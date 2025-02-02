@@ -34,23 +34,6 @@ class NotificationsScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-        ],
-        selectedItemColor: Colors.black,
-      ),
     );
   }
 }
@@ -59,7 +42,7 @@ class NotificationItem extends StatelessWidget {
   final String title;
   final String timeAgo;
 
-  const NotificationItem({required this.title, required this.timeAgo});
+  const NotificationItem({super.key, required this.title, required this.timeAgo});
 
   @override
   Widget build(BuildContext context) {

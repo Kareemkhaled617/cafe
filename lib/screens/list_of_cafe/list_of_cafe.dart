@@ -1,4 +1,6 @@
+import 'package:cafe/screens/edit_cafe_info/edit_cafe_info.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CafeListScreen extends StatelessWidget {
   const CafeListScreen({super.key});
@@ -20,23 +22,6 @@ class CafeListScreen extends StatelessWidget {
           CafeItem(name: 'وكف'),
           CafeItem(name: 'نادي الكتاب'),
         ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-        ],
-        selectedItemColor: Colors.black,
       ),
     );
   }
@@ -63,7 +48,9 @@ class CafeItem extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(() => EditReviewScreen());
+              },
               style: TextButton.styleFrom(
                 foregroundColor: Colors.black,
                 backgroundColor: Colors.grey[300],
@@ -72,7 +59,9 @@ class CafeItem extends StatelessWidget {
             ),
             SizedBox(width: 8),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                showDeleteConfirmation(name);
+              },
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.red,
@@ -82,6 +71,51 @@ class CafeItem extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void showDeleteConfirmation(String cafeName) {
+    Get.defaultDialog(
+      title: 'حذف الحساب',
+      titleStyle: TextStyle(
+          fontSize: 22, fontWeight: FontWeight.w900, fontFamily: 'Tajawal'),
+      middleText: 'هل أنت متأكد من رغبتك في حذف الحساب؟\nللتأكيد انقر على حذف',
+      middleTextStyle: TextStyle(fontSize: 18, fontFamily: 'Tajawal'),
+      backgroundColor: Colors.white,
+      radius: 10,
+      actions: [
+        TextButton(
+          onPressed: () => Get.back(),
+          style: TextButton.styleFrom(
+            backgroundColor: Colors.white,
+            side: BorderSide(color: Colors.black),
+            padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+          ),
+          child: Text(
+            'إلغاء',
+            style: TextStyle(
+                fontSize: 16, color: Colors.black, fontFamily: 'Tajawal'),
+          ),
+        ),
+        ElevatedButton(
+          onPressed: () {
+
+            Get.back();
+            Get.snackbar('تم الحذف', '$cafeName قد تم حذفه بنجاح',
+                backgroundColor: Colors.red, colorText: Colors.white);
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.black,
+
+            padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+          ),
+          child: Text(
+            'حذف',
+            style: TextStyle(
+                fontSize: 16, color: Colors.white, fontFamily: 'Tajawal'),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../cafe_request_info/cafe_request_info.dart';
 
 class RegistrationRequestsScreen extends StatelessWidget {
   const RegistrationRequestsScreen({super.key});
@@ -6,7 +9,10 @@ class RegistrationRequestsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           'طلبات الانضمام',
           style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900),
@@ -22,23 +28,7 @@ class RegistrationRequestsScreen extends StatelessWidget {
           RequestItem(name: 'هارينا', date: '2024/11/2'),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-        ],
-        selectedItemColor: Colors.black,
-      ),
+
     );
   }
 }
@@ -47,7 +37,7 @@ class RequestItem extends StatelessWidget {
   final String name;
   final String date;
 
-  RequestItem({required this.name, required this.date});
+  const RequestItem({required this.name, required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +71,7 @@ class RequestItem extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                // Handle review request action
+                Get.to(() => RequestReviewScreen());
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.black,

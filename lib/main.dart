@@ -1,7 +1,4 @@
-import 'package:cafe/screens/SignInScreen/SignInScreen.dart';
-import 'package:cafe/screens/SignupScreen/SignupScreen.dart';
-import 'package:cafe/screens/cafe_request/cafe_request.dart';
-import 'package:cafe/screens/list_of_cafe/list_of_cafe.dart';
+
 import 'package:cafe/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
