@@ -55,7 +55,7 @@ class CafeItem extends StatelessWidget {
                 foregroundColor: Colors.black,
                 backgroundColor: Colors.grey[300],
               ),
-              child: Text('تعديل المعلومات'),
+              child: Text(' عرض'),
             ),
             SizedBox(width: 8),
             TextButton(
@@ -66,7 +66,7 @@ class CafeItem extends StatelessWidget {
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.red,
               ),
-              child: Text('حذف'),
+              child: Text('حظر'),
             ),
           ],
         ),
@@ -76,10 +76,10 @@ class CafeItem extends StatelessWidget {
 
   void showDeleteConfirmation(String cafeName) {
     Get.defaultDialog(
-      title: 'حذف الحساب',
+      title: 'حظر الحساب',
       titleStyle: TextStyle(
           fontSize: 22, fontWeight: FontWeight.w900, fontFamily: 'Tajawal'),
-      middleText: 'هل أنت متأكد من رغبتك في حذف الحساب؟\nللتأكيد انقر على حذف',
+      middleText: 'هل أنت متأكد من رغبتك في حظر الحساب؟\nللتأكيد انقر على حظر',
       middleTextStyle: TextStyle(fontSize: 18, fontFamily: 'Tajawal'),
       backgroundColor: Colors.white,
       radius: 10,
@@ -110,7 +110,7 @@ class CafeItem extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
           ),
           child: Text(
-            'حذف',
+            'حظر',
             style: TextStyle(
                 fontSize: 16, color: Colors.white, fontFamily: 'Tajawal'),
           ),

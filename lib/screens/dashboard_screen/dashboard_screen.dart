@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../NotificationsScreen/NotificationsScreen.dart';
+import '../SignInScreen/SignInScreen.dart';
 import '../cafe_request_info/cafe_request_info.dart';
 import '../list_of_cafe/list_of_cafe.dart';
 import '../request/request.dart';
@@ -14,7 +16,8 @@ class DashboardScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'لوحة التحكم',
-          style: TextStyle(fontSize: 26, fontWeight: FontWeight.w900),
+
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900),
         ),
         centerTitle: true,
         actions: [
@@ -22,7 +25,8 @@ class DashboardScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: ElevatedButton(
               onPressed: () {
-                // Handle logout action
+                Get.to(SignInScreen());
+
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black,
@@ -32,7 +36,7 @@ class DashboardScreen extends StatelessWidget {
                 ),
               ),
               child: Text(
-                'Logout',
+                'تسجيل خروج',
                 style: TextStyle(
                     fontSize: 14, color: Colors.white, fontFamily: 'Tajawal'),
               ),
@@ -59,11 +63,8 @@ class DashboardScreen extends StatelessWidget {
                 buttonText: 'عرض القائمة',
                 children: [
                   CafeItem(name: 'رو كافيه', imageUrl: 'assets/image/img.jpg'),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  CafeItem(
-                      name: 'أفينجارديا', imageUrl: 'assets/image/img.jpg'),
+                  SizedBox(height: 10),
+                  CafeItem(name: 'أفينجارديا', imageUrl: 'assets/image/img.jpg'),
                 ],
               ),
               DashboardCard(
@@ -90,11 +91,12 @@ class DashboardCard extends StatelessWidget {
   final String buttonText;
   final List<Widget> children;
 
-  const DashboardCard(
-      {super.key,
-      required this.title,
-      required this.buttonText,
-      required this.children});
+  const DashboardCard({
+    super.key,
+    required this.title,
+    required this.buttonText,
+    required this.children,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -112,33 +114,44 @@ class DashboardCard extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 20,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (title == 'المقاهي المسجلة') {
-                      Get.to(() => CafeListScreen());
-                    }else if (title == 'طلبات الانضمام') {
-                      Get.to(() => RegistrationRequestsScreen());
-                    }
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    bool isSmallScreen = constraints.maxWidth < 600;
+                    return ElevatedButton(
+                      onPressed: () {
+                        if (title == 'المقاهي المسجلة') {
+                          Get.to(() => CafeListScreen());
+                        } else if (title == 'طلبات الانضمام') {
+                          Get.to(() => RegistrationRequestsScreen());
+                        }
+                        else if (title == 'النشاط الأخير') {
+                          Get.to(() => NotificationsScreen());
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.grey[300],
+                        padding: EdgeInsets.symmetric(
+                          horizontal: isSmallScreen ? 12 : 16,
+                          vertical: isSmallScreen ? 4 : 6,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      child: Text(
+                        buttonText,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: isSmallScreen ? 16 : 19,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    );
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[300],
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  child: Text(
-                    buttonText,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 19,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
                 ),
               ],
             ),
@@ -178,7 +191,7 @@ class JoinRequestItem extends StatelessWidget {
         time,
         textAlign: TextAlign.start,
         style: TextStyle(
-            fontSize: 18, fontWeight: FontWeight.w700, color: Colors.grey[600]),
+            fontSize: 12, fontWeight: FontWeight.w700, color: Colors.grey[600]),
       ),
       trailing: ElevatedButton(
         onPressed: () {
@@ -186,9 +199,9 @@ class JoinRequestItem extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Color(0XFFebe1c6),
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(18),
           ),
         ),
         child: Text('مراجعة الطلب',

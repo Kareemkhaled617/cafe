@@ -51,7 +51,7 @@ class _SignupScreenState extends State<ResetpasswordScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'إستعادة كلمة المرور ',
+                  'إستعادة كلمة السر ',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w900,

@@ -8,6 +8,10 @@ class RegistrationRequestsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // الحصول على حجم الشاشة
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -15,20 +19,19 @@ class RegistrationRequestsScreen extends StatelessWidget {
         elevation: 0,
         title: Text(
           'طلبات الانضمام',
-          style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900),
+          style: TextStyle(fontSize: width * 0.08, fontWeight: FontWeight.w900),
         ),
         centerTitle: true,
       ),
       body: ListView(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(width * 0.04),
         children: [
-          RequestItem(name: 'عرب', date: '2024/9/12'),
-          RequestItem(name: 'حبر', date: '2024/9/12'),
-          RequestItem(name: 'كفة', date: '2024/10/2'),
-          RequestItem(name: 'هارينا', date: '2024/11/2'),
+          RequestItem(name: 'عرب', date: '2024/9/12', width: width),
+          RequestItem(name: 'حبر', date: '2024/9/12', width: width),
+          RequestItem(name: 'كفة', date: '2024/10/2', width: width),
+          RequestItem(name: 'هارينا', date: '2024/11/2', width: width),
         ],
       ),
-
     );
   }
 }
@@ -36,16 +39,17 @@ class RegistrationRequestsScreen extends StatelessWidget {
 class RequestItem extends StatelessWidget {
   final String name;
   final String date;
+  final double width;
 
-  const RequestItem({required this.name, required this.date});
+  const RequestItem({required this.name, required this.date, required this.width});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 8),
+      margin: EdgeInsets.symmetric(vertical: width * 0.02),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(width * 0.04),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -55,15 +59,15 @@ class RequestItem extends StatelessWidget {
                 Text(
                   name,
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: width * 0.05,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
-                SizedBox(height: 4),
+                SizedBox(height: width * 0.01),
                 Text(
                   'تاريخ الطلب $date',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: width * 0.045,
                     color: Colors.grey[800],
                   ),
                 ),
@@ -79,10 +83,17 @@ class RequestItem extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(28),
                 ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: width * 0.06,
+                  vertical: width * 0.02,
+                ),
               ),
               child: Text(
                 'مراجعة الطلب',
-                style: TextStyle(fontWeight: FontWeight.w800,fontSize: 18),
+                style: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  fontSize: width * 0.045,
+                ),
               ),
             ),
           ],

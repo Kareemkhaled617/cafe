@@ -17,10 +17,31 @@ class _CafeAdminLayoutState extends State<CafeAdminLayout> {
 
   @override
   Widget build(BuildContext context) {
+    // Get screen width and height
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    // Use LayoutBuilder to dynamically adapt layout based on available width
     return Scaffold(
       backgroundColor: Colors.white,
       body: page[selectPage],
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: screenWidth > 600
+          ? BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Cafe List'),
+          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'Notifications'),
+        ],
+        currentIndex: selectPage,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {
+          setState(() {
+            selectPage = index;
+          });
+        },
+      )
+          : BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.list), label: ''),

@@ -118,7 +118,7 @@ class LicenseImageSection extends StatelessWidget {
           Image.asset(
             'assets/image/img.jpg', // Replace with actual image path
             height: 150,
-            width: 200,
+            width: 150,
             fit: BoxFit.cover,
           ),
         ],
