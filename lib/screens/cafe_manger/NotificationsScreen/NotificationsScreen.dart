@@ -23,7 +23,6 @@ class NotificationsScreen extends StatelessWidget {
               fontSize: 22,
               fontWeight: FontWeight.w900,
               fontFamily: 'Tajawal',
-              color: Colors.black,
             ),
           ),
         ),
@@ -31,7 +30,7 @@ class NotificationsScreen extends StatelessWidget {
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: EdgeInsets.all(16),
             child: Column(
               children: [
                 NotificationCard(
@@ -59,7 +58,7 @@ class NotificationsScreen extends StatelessWidget {
   }
 }
 
-// **Notification Card Widget**
+// Notification Card Widget
 class NotificationCard extends StatelessWidget {
   final String title;
   final String description;
@@ -86,63 +85,43 @@ class NotificationCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 3)),
-        ],
+        border: Border.all(color: Colors.grey[300]!),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          // Notification Image
-
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                    fontFamily: 'Tajawal',
-                    color: Colors.black,
-                  ),
-                  textAlign: TextAlign.right,
-                ),
-                SizedBox(height: 4),
-                Text(
-                  description,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'Tajawal',
-                    color: Colors.grey.shade600,
-                  ),
-
-                ),
-                SizedBox(height: 8),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '📅 $date',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Tajawal',
-                      color: Colors.grey.shade900,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(width: 12),
           ClipRRect(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(8),
             child: Image.asset(
               imageUrl,
-              width: 120,
-              height: 100,
+              width: double.infinity,
+              height: 120,
               fit: BoxFit.cover,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            title,
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Tajawal'),
+            textAlign: TextAlign.right,
+          ),
+          SizedBox(height: 5),
+          Text(
+            description,
+            style: TextStyle(
+                fontSize: 14, fontFamily: 'Tajawal', color: Colors.black87),
+            textAlign: TextAlign.right,
+          ),
+          SizedBox(height: 10),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'التاريخ: $date',
+              style: TextStyle(
+                  fontSize: 14, fontFamily: 'Tajawal', color: Colors.grey[600]),
             ),
           ),
         ],

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class NotificationsScreen extends StatelessWidget {
-  const NotificationsScreen({super.key});
+class UpcomingEventsScreen extends StatelessWidget {
+  const UpcomingEventsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +18,11 @@ class NotificationsScreen extends StatelessWidget {
           ),
           centerTitle: true,
           title: Text(
-            'إشعاراتي',
+            'الفعاليات القادمة',
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w900,
               fontFamily: 'Tajawal',
-              color: Colors.black,
             ),
           ),
         ),
@@ -31,23 +30,28 @@ class NotificationsScreen extends StatelessWidget {
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: EdgeInsets.all(16),
             child: Column(
               children: [
-                NotificationCard(
-                  title: 'حوارات ثقافية',
-                  description:
-                      'تذكير: فعاليتك للحوار الثقافي قادمة، تابع التحديثات وآخر الإشعارات المتعلقة بالفعالية',
-                  date: '2024-3-13 | 6:00 مساءً',
-                  imageUrl: 'assets/image/logo.png',
-                  constraints: constraints,
-                ),
-                NotificationCard(
+                EventItem(
                   title: 'بناء الجسور',
                   description:
-                      'تنبيه: تم تعديل موعد فعالية "بناء الجسور". يرجى متابعة التحديثات لمعرفة التفاصيل الجديدة',
-                  date: '2924-5-20 | 4:30 مساءً',
-                  imageUrl: 'assets/image/logo.png',
+                      'انضم إلينا في حدث "بناء الجسور" الذي يهدف إلى تعزيز التفاهم، التواصل، والتعاون بين الأفراد والمجتمعات.',
+                  imageUrl: 'assets/image/img.jpg',
+                  constraints: constraints,
+                ),
+                EventItem(
+                  title: 'حوارات ثقافية',
+                  description:
+                      'انضم إلينا في إحدى الحوارات حول الكتب الثقافية التي تقام في مقهى عرب.',
+                  imageUrl: 'assets/image/img.jpg',
+                  constraints: constraints,
+                ),
+                EventItem(
+                  title: 'الأبل في أدب الصحراء',
+                  description:
+                      'انضم إلينا في إحدى الحوارات التي تقام في مقهى عرب.',
+                  imageUrl: 'assets/image/img.jpg',
                   constraints: constraints,
                 ),
               ],
@@ -59,42 +63,41 @@ class NotificationsScreen extends StatelessWidget {
   }
 }
 
-// **Notification Card Widget**
-class NotificationCard extends StatelessWidget {
+// Event Item Widget
+class EventItem extends StatelessWidget {
   final String title;
   final String description;
-  final String date;
   final String imageUrl;
   final BoxConstraints constraints;
 
-  NotificationCard({
+  EventItem({
     required this.title,
     required this.description,
-    required this.date,
     required this.imageUrl,
     required this.constraints,
   });
 
   @override
   Widget build(BuildContext context) {
-    double cardWidth = constraints.maxWidth > 500 ? 500 : constraints.maxWidth;
-
     return Container(
-      width: cardWidth,
       margin: EdgeInsets.only(bottom: 16),
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Color(0xFFffffff),
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 3)),
-        ],
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Notification Image
-
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.asset(
+              imageUrl,
+              height: 100,
+              width: 120,
+              fit: BoxFit.cover,
+            ),
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -103,46 +106,27 @@ class NotificationCard extends StatelessWidget {
                   title,
                   style: TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.w800,
+                    fontWeight: FontWeight.w900,
                     fontFamily: 'Tajawal',
-                    color: Colors.black,
                   ),
                   textAlign: TextAlign.right,
                 ),
                 SizedBox(height: 4),
-                Text(
-                  description,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'Tajawal',
-                    color: Colors.grey.shade600,
-                  ),
-
-                ),
-                SizedBox(height: 8),
-                Align(
-                  alignment: Alignment.centerLeft,
+                SizedBox(
+                  width: 200,
                   child: Text(
-                    '📅 $date',
+                    description,
+                    maxLines: 4,
                     style: TextStyle(
                       fontSize: 16,
                       fontFamily: 'Tajawal',
-                      color: Colors.grey.shade900,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.grey.shade600,
                     ),
+                    textAlign: TextAlign.right,
                   ),
                 ),
               ],
-            ),
-          ),
-          SizedBox(width: 12),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.asset(
-              imageUrl,
-              width: 120,
-              height: 100,
-              fit: BoxFit.cover,
             ),
           ),
         ],
