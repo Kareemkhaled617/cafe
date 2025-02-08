@@ -2,10 +2,13 @@
 import 'package:cafe/screens/CafeRegister/cafe_register.dart';
 import 'package:cafe/screens/NotificationsScreen/NotificationsScreen.dart';
 import 'package:cafe/screens/cafe_manger/BookingConfirmationScreen/BookingConfirmationScreen.dart';
+import 'package:cafe/screens/cafe_manger/BookingDetailsScreen/BookingDetailsScreen.dart';
 import 'package:cafe/screens/cafe_manger/HomeScreen/HomeScreen.dart';
 import 'package:cafe/screens/cafe_manger/MyBookingsScreen/MyBookingsScreen.dart';
 import 'package:cafe/screens/cafe_manger/MyTicketsScreen/MyTicketsScreen.dart';
+import 'package:cafe/screens/cafe_manger/PaymentScreen/PaymentScreen.dart';
 import 'package:cafe/screens/cafe_manger/ReviewScreen/ReviewScreen.dart';
+import 'package:cafe/screens/cafe_manger/TicketCancellationScreen/TicketCancellationScreen.dart';
 import 'package:cafe/screens/cafe_manger/UpcomingEventsScreen/UpcomingEventsScreen.dart';
 import 'package:cafe/screens/cafe_manger/WorkspacesScreen/WorkspacesScreen.dart';
 import 'package:cafe/screens/cafe_manger/postScreen/postScreen.dart';
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: NotificationsScreen(),
+      home: PaymentScreen(),
     );
   }
 }
