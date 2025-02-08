@@ -45,9 +45,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
           ),
         ),
       ),
-      body: LayoutBuilder(
+      body:
+
+      LayoutBuilder(
+
         builder: (context, constraints) {
           return SingleChildScrollView(
+
             padding: EdgeInsets.all(16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

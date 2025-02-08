@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:file_picker/file_picker.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 class RegisterLiteraryPartnerScreen extends StatefulWidget {
   @override
@@ -109,7 +109,7 @@ class _RegisterLiteraryPartnerScreenState
 
             // Support Contact
             GestureDetector(
-              onTap: () => launchEmail(),
+              onTap: () {},
               child: Text(
                 'لأي استفسارات، يرجى الاتصال بنا على\nsupport@jisoor.com',
                 textAlign: TextAlign.center,
@@ -138,18 +138,19 @@ class _RegisterLiteraryPartnerScreenState
         ),
       ),
     );
-  }void launchEmail() async {
-    final Uri emailLaunchUri = Uri(
-      scheme: 'mailto',
-      path: 'support@jisoor.com',
-    );
-    if (await canLaunch(emailLaunchUri.toString())) {
-      await launch(emailLaunchUri.toString());
-    } else {
-      Get.snackbar('خطأ', 'لا يمكن فتح البريد الإلكتروني',
-          backgroundColor: Colors.red, colorText: Colors.white);
-    }
   }
+  // void launchEmail() async {
+  //   final Uri emailLaunchUri = Uri(
+  //     scheme: 'mailto',
+  //     path: 'support@jisoor.com',
+  //   );
+  //   if (await canLaunch(emailLaunchUri.toString())) {
+  //     await launch(emailLaunchUri.toString());
+  //   } else {
+  //     Get.snackbar('خطأ', 'لا يمكن فتح البريد الإلكتروني',
+  //         backgroundColor: Colors.red, colorText: Colors.white);
+  //   }
+  // }
 }
 
 // Custom TextField
@@ -187,28 +188,28 @@ class FileUploadSection extends StatelessWidget {
 
   FileUploadSection({required this.onFileSelected, this.selectedFilePath});
 
-  Future<void> pickFile() async {
-    try {
-      if (!GetPlatform.isWeb) { // Avoid issues on web
-        await FilePicker.platform.clearTemporaryFiles();
-      }
-
-      FilePickerResult? result = await FilePicker.platform.pickFiles();
-      if (result != null) {
-        String? filePath = result.files.single.path;
-        onFileSelected(filePath);
-      }
-    } catch (e) {
-      Get.snackbar("خطأ", "تعذر اختيار الملف: $e",
-          backgroundColor: Colors.red, colorText: Colors.white);
-    }
-  }
+  // Future<void> pickFile() async {
+  //   try {
+  //     if (!GetPlatform.isWeb) { // Avoid issues on web
+  //       await FilePicker.platform.clearTemporaryFiles();
+  //     }
+  //
+  //     FilePickerResult? result = await FilePicker.platform.pickFiles();
+  //     if (result != null) {
+  //       String? filePath = result.files.single.path;
+  //       onFileSelected(filePath);
+  //     }
+  //   } catch (e) {
+  //     Get.snackbar("خطأ", "تعذر اختيار الملف: $e",
+  //         backgroundColor: Colors.red, colorText: Colors.white);
+  //   }
+  // }
 
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: pickFile,
+      onTap: (){},
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.all(16),
@@ -231,7 +232,7 @@ class FileUploadSection extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: pickFile,
+                onPressed: (){},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                   padding: EdgeInsets.symmetric(vertical: 14),

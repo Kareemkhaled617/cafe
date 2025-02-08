@@ -1,18 +1,20 @@
 
 import 'package:cafe/screens/CafeRegister/cafe_register.dart';
 import 'package:cafe/screens/NotificationsScreen/NotificationsScreen.dart';
-import 'package:cafe/screens/cafe_manger/BookingConfirmationScreen/BookingConfirmationScreen.dart';
-import 'package:cafe/screens/cafe_manger/BookingDetailsScreen/BookingDetailsScreen.dart';
-import 'package:cafe/screens/cafe_manger/HomeScreen/HomeScreen.dart';
-import 'package:cafe/screens/cafe_manger/MyBookingsScreen/MyBookingsScreen.dart';
-import 'package:cafe/screens/cafe_manger/MyTicketsScreen/MyTicketsScreen.dart';
-import 'package:cafe/screens/cafe_manger/PaymentScreen/PaymentScreen.dart';
-import 'package:cafe/screens/cafe_manger/ReviewScreen/ReviewScreen.dart';
-import 'package:cafe/screens/cafe_manger/TicketCancellationScreen/TicketCancellationScreen.dart';
-import 'package:cafe/screens/cafe_manger/UpcomingEventsScreen/UpcomingEventsScreen.dart';
-import 'package:cafe/screens/cafe_manger/WorkspacesScreen/WorkspacesScreen.dart';
-import 'package:cafe/screens/cafe_manger/postScreen/postScreen.dart';
-import 'package:cafe/screens/cafe_manger/workSpace/workSpace.dart';
+import 'package:cafe/screens/cafe_manger/EventManagmentScreen/EventManagementScreen.dart';
+import 'package:cafe/screens/cafe_manger/WorkSpaceManagmentScreen/WorkSpaceManagmentScreen.dart';
+import 'package:cafe/screens/user/BookingConfirmationScreen/BookingConfirmationScreen.dart';
+import 'package:cafe/screens/user/BookingDetailsScreen/BookingDetailsScreen.dart';
+import 'package:cafe/screens/user/HomeScreen/HomeScreen.dart';
+import 'package:cafe/screens/user/MyBookingsScreen/MyBookingsScreen.dart';
+import 'package:cafe/screens/user/MyTicketsScreen/MyTicketsScreen.dart';
+import 'package:cafe/screens/user/PaymentScreen/PaymentScreen.dart';
+import 'package:cafe/screens/user/ReviewScreen/ReviewScreen.dart';
+import 'package:cafe/screens/user/TicketCancellationScreen/TicketCancellationScreen.dart';
+import 'package:cafe/screens/user/UpcomingEventsScreen/UpcomingEventsScreen.dart';
+import 'package:cafe/screens/user/WorkspacesScreen/WorkspacesScreen.dart';
+import 'package:cafe/screens/user/postScreen/postScreen.dart';
+import 'package:cafe/screens/user/workSpace/workSpace.dart';
 import 'package:cafe/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -30,14 +32,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Cafe',
+      title: 'Jisur',
       debugShowCheckedModeBanner: false,
       locale: Locale('ar','EG'),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: PaymentScreen(),
+      home: EventManagementScreen(),
     );
   }
 }

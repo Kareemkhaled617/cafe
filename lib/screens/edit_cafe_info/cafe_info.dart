@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class EditReviewScreen extends StatelessWidget {
-  const EditReviewScreen({super.key});
+class CafeInfoScreen extends StatelessWidget {
+  const CafeInfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class EditReviewScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          'تعديل المعلومات',
+          'عرض المعلومات',
           style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.w900,
@@ -83,7 +83,7 @@ class RequestDetailItem extends StatelessWidget {
               ),
             ],
           ),
-          IconButton(onPressed: () {}, icon: Icon(Icons.edit))
+
         ],
       ),
     );
