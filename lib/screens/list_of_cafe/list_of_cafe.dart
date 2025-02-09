@@ -1,8 +1,6 @@
-
+import 'package:cafe/screens/edit_cafe_info/edit_cafe_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../edit_cafe_info/cafe_info.dart';
 
 class CafeListScreen extends StatelessWidget {
   const CafeListScreen({super.key});
@@ -51,7 +49,7 @@ class CafeItem extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () {
-                Get.to(() => CafeInfoScreen());
+                Get.to(() => EditReviewScreen());
               },
               style: TextButton.styleFrom(
                 foregroundColor: Colors.black,
@@ -103,7 +101,7 @@ class CafeItem extends StatelessWidget {
           onPressed: () {
 
             Get.back();
-            Get.snackbar('تم الحظر', '$cafeName قد تم حظر بنجاح',
+            Get.snackbar('تم الحذف', '$cafeName قد تم حذفه بنجاح',
                 backgroundColor: Colors.red, colorText: Colors.white);
           },
           style: ElevatedButton.styleFrom(

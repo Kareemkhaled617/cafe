@@ -164,7 +164,7 @@ class CustomTextField extends StatelessWidget {
         textAlign: TextAlign.right,
         decoration: InputDecoration(
           hintText: label,
-          hintStyle: TextStyle(fontFamily: 'Rubik'),
+          hintStyle: TextStyle(fontFamily: 'Tajawal'),
           contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
