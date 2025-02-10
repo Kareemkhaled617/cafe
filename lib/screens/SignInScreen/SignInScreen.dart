@@ -5,6 +5,7 @@ import '../CafeRegister/cafe_register.dart';
 import '../ResetPasswordScreen/ResetPasswordScreen.dart';
 import '../SignupScreen/SignupScreen.dart';
 import '../cafe_admin_layout/cafe_admin_layout.dart';
+import '../cafe_manger/ProfileScreen/ProfileScreen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -72,7 +73,7 @@ class SignInScreen extends StatelessWidget {
                     height: constraints.maxWidth > 600 ? 60 : 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.to(CafeAdminLayout());
+                        Get.to(ProfileScreen());
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF0a2332),
@@ -164,7 +165,7 @@ class CustomTextField extends StatelessWidget {
         textAlign: TextAlign.right,
         decoration: InputDecoration(
           hintText: label,
-          hintStyle: TextStyle(fontFamily: 'Tajawal'),
+          hintStyle: TextStyle(fontFamily: 'Rubik'),
           contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),

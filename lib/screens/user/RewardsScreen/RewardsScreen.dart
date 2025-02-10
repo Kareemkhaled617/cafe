@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../cafe_manger/AddRewardScreen/AddRewardScreen.dart';
+import '../../cafe_manger/Edit Reward Screen/Edit Reward Screen.dart';
+import '../../cafe_manger/QRAttendanceScreen/QRAttendanceScreen.dart';
+
 class RewardsScreen extends StatelessWidget {
   final List<Map<String, String>> rewards = [
     {'name': 'كوكيز', 'points': '70 نقطة', 'image': 'assets/image/logo.png'},
@@ -37,7 +41,9 @@ class RewardsScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(AddRewardScreen());
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF1a2833),
                 shape: RoundedRectangleBorder(
@@ -78,7 +84,9 @@ class RewardsScreen extends StatelessWidget {
 
   Widget _buildActionButton(String title, IconData icon, Color color) {
     return ElevatedButton.icon(
-      onPressed: () {},
+      onPressed: () {
+        Get.to(QRAttendanceScreen());
+      },
       label: Icon(
         icon,
         size: 18,
@@ -124,7 +132,9 @@ class RewardsScreen extends StatelessWidget {
             style: TextStyle(
                 fontSize: 14, fontFamily: 'Tajawal', color: Colors.orange)),
         trailing: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(EditRewardScreen());
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.grey.shade400,
             shape:

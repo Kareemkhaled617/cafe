@@ -1,15 +1,27 @@
 
-import 'package:cafe/screens/user/%20UploadPostScreen/UploadPostScreen.dart';
-import 'package:cafe/screens/user/AdminDashboardScreen/AdminDashboardScreen.dart';
-import 'package:cafe/screens/user/AttendanceListScreen/AttendanceListScreen.dart';
-import 'package:cafe/screens/user/CreateWorkspaceScreen/CreateWorkspaceScreen.dart';
-import 'package:cafe/screens/user/CustomerInfoScreen/CustomerInfoScreen.dart';
-import 'package:cafe/screens/user/EditProfileScreen/EditProfileScreen.dart';
-import 'package:cafe/screens/user/EditWorkspaceScreen/EditWorkspaceScreen.dart';
-import 'package:cafe/screens/user/QRAttendanceScreen/QRAttendanceScreen.dart';
-import 'package:cafe/screens/user/RewardsScreen/RewardsScreen.dart';
-import 'package:cafe/screens/user/SendNotificationScreen/SendNotificationScreen.dart';
-
+import 'package:cafe/screens/CafeRegister/cafe_register.dart';
+import 'package:cafe/screens/NotificationsScreen/NotificationsScreen.dart';
+import 'package:cafe/screens/cafe_manger/CreateEventScreen/CreateEventScreen.dart';
+import 'package:cafe/screens/cafe_manger/Edit%20Reward%20Screen/Edit%20Reward%20Screen.dart';
+import 'package:cafe/screens/cafe_manger/EventManagmentScreen/EventManagementScreen.dart';
+import 'package:cafe/screens/cafe_manger/ProfileScreen/ProfileScreen.dart';
+import 'package:cafe/screens/cafe_manger/RewardsScreen/RewardsScreen.dart';
+import 'package:cafe/screens/cafe_manger/WorkSpaceManagmentScreen/WorkSpaceManagmentScreen.dart';
+import 'package:cafe/screens/cafe_manger/cafe_manger_layout/cafe_manger_layout.dart';
+import 'package:cafe/screens/user/BookingConfirmationScreen/BookingConfirmationScreen.dart';
+import 'package:cafe/screens/user/BookingDetailsScreen/BookingDetailsScreen.dart';
+import 'package:cafe/screens/user/EventFeedbackScreen/EventFeedbackScreen.dart';
+import 'package:cafe/screens/user/HomeScreen/HomeScreen.dart';
+import 'package:cafe/screens/user/MyBookingsScreen/MyBookingsScreen.dart';
+import 'package:cafe/screens/user/MyTicketsScreen/MyTicketsScreen.dart';
+import 'package:cafe/screens/user/PaymentScreen/PaymentScreen.dart';
+import 'package:cafe/screens/user/ReviewScreen/ReviewScreen.dart';
+import 'package:cafe/screens/user/TicketCancellationScreen/TicketCancellationScreen.dart';
+import 'package:cafe/screens/user/UpcomingEventsScreen/UpcomingEventsScreen.dart';
+import 'package:cafe/screens/user/WorkspacesScreen/WorkspacesScreen.dart';
+import 'package:cafe/screens/user/postScreen/postScreen.dart';
+import 'package:cafe/screens/user/workSpace/workSpace.dart';
+import 'package:cafe/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
@@ -26,14 +38,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Cafe',
+      title: 'Jisur',
       debugShowCheckedModeBanner: false,
       locale: Locale('ar','EG'),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: EditProfileScreen(),
+      home: CafeMangerLayout(),
     );
   }
 }

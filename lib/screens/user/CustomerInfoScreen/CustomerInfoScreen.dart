@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../cafe_manger/SendNotificationScreen/SendNotificationScreen.dart';
+
 class CustomerInfoScreen extends StatelessWidget {
   const CustomerInfoScreen({super.key});
 
@@ -57,7 +59,9 @@ class CustomerInfoScreen extends StatelessWidget {
             ),
             SizedBox(height: 24),
             ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(SendNotificationScreen());
+              },
               label: Icon(Icons.notifications, color: Colors.white),
               icon: Text(
                 'إرسال إشعار للعميل   ',
@@ -72,48 +76,11 @@ class CustomerInfoScreen extends StatelessWidget {
               ),
             ),
             Spacer(),
-            _buildBottomNavBar(),
+
           ],
         ),
       ),
     );
   }
 
-  Widget _buildBottomNavBar() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 10,
-            spreadRadius: 2,
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton(
-            icon: Icon(Icons.person, size: 28),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.calendar_today, size: 28),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.grid_view, size: 28),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.card_giftcard, size: 28),
-            onPressed: () {},
-          ),
-        ],
-      ),
-    );
-  }
 }

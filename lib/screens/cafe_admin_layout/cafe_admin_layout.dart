@@ -25,10 +25,9 @@ class _CafeAdminLayoutState extends State<CafeAdminLayout> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: page[selectPage],
-      bottomNavigationBar: screenWidth > 600
-          ? BottomNavigationBar(
+      bottomNavigationBar: screenWidth > 600 ? BottomNavigationBar(
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Container(child: Icon(Icons.home)), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Cafe List'),
           BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'Notifications'),
         ],
@@ -50,8 +49,10 @@ class _CafeAdminLayoutState extends State<CafeAdminLayout> {
         currentIndex: selectPage,
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
+
         onTap: (index) {
           setState(() {
+
             selectPage = index;
           });
         },
