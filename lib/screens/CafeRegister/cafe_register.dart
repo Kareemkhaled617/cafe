@@ -1,3 +1,4 @@
+import 'package:cafe/screens/cafe_manger/ProfileScreen/ProfileScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:file_picker/file_picker.dart';
@@ -43,8 +44,9 @@ class _RegisterLiteraryPartnerScreenState
               'التسجيل كشريك أدبي',
               style: TextStyle(
                 fontSize: 22,
+                color:  Color(0xFF0a2332),
                 fontWeight: FontWeight.bold,
-                fontFamily: 'Tajawal',
+                fontFamily: 'Rubik',
               ),
               textAlign: TextAlign.center,
             ),
@@ -64,7 +66,7 @@ class _RegisterLiteraryPartnerScreenState
               alignment: Alignment.centerRight,
               child: Text(
                 'الرجاء إرفاق صورة الترخيص للشريك الأدبي',
-                style: TextStyle(fontSize: 14, fontFamily: 'Tajawal'),
+                style: TextStyle( color: Color(0xFF0a2332),fontSize: 14, fontFamily: 'Rubik'),
               ),
             ),
             SizedBox(height: 10),
@@ -85,10 +87,10 @@ class _RegisterLiteraryPartnerScreenState
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Handle form submission
+              Get.to(ProfileScreen(),);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amber[200],
+                  backgroundColor: Color(0xFFede1c3),
                   padding: EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -98,7 +100,7 @@ class _RegisterLiteraryPartnerScreenState
                   'أرسل الطلب',
                   style: TextStyle(
                     fontSize: 16,
-                    fontFamily: 'Tajawal',
+                    fontFamily: 'Rubik',
                     color: Colors.black,
                   ),
                 ),
@@ -115,8 +117,8 @@ class _RegisterLiteraryPartnerScreenState
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14,
-                  fontFamily: 'Tajawal',
-                  color: Colors.black,
+                  fontFamily: 'Rubik',
+                  color: Color(0xFF0a2332),
                 ),
               ),
             ),
@@ -130,7 +132,8 @@ class _RegisterLiteraryPartnerScreenState
                 '© 2024 Jisoor- All Rights Reserved',
                 style: TextStyle(
                   fontSize: 12,
-                  color: Colors.grey[600],
+                  fontFamily: 'Rubik',
+                  color:  Color(0xFF0a2332),
                 ),
               ),
             ),
@@ -169,7 +172,7 @@ class CustomTextField extends StatelessWidget {
         textAlign: TextAlign.right,
         decoration: InputDecoration(
           hintText: label,
-          hintStyle: TextStyle(fontFamily: 'Tajawal'),
+            hintStyle: TextStyle(fontFamily: 'Rubik'),
           contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
@@ -220,13 +223,13 @@ class FileUploadSection extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Icon(Icons.upload_file, size: 40, color: Colors.grey[600]),
+            Icon(Icons.drive_folder_upload, size: 40, color:  Color(0xFF0a2332),),
             SizedBox(height: 8),
             Text(
               selectedFilePath != null
                   ? 'تم اختيار الملف'
                   : 'اختر ملفًا من جهازك',
-              style: TextStyle(fontSize: 14, fontFamily: 'Tajawal'),
+              style: TextStyle(color:  Color(0xFF0a2332),fontSize: 14, fontFamily: 'Rubik'),
             ),
             SizedBox(height: 10),
             SizedBox(
@@ -234,7 +237,7 @@ class FileUploadSection extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: (){},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
+                  backgroundColor:  Color(0xFF0a2332),
                   padding: EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -242,7 +245,7 @@ class FileUploadSection extends StatelessWidget {
                 ),
                 child: Text(
                   'اختيار ملف',
-                  style: TextStyle(fontSize: 16, fontFamily: 'Tajawal', color: Colors.white),
+                  style: TextStyle(fontSize: 16, fontFamily: 'Rubik', color: Colors.white),
                 ),
               ),
             ),

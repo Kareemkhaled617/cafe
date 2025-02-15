@@ -10,7 +10,7 @@ class AdminDashboardScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('لوحة التحكم',
             style: TextStyle(
-                fontFamily: 'Tajawal',
+                fontFamily: 'Rubik',
                 fontSize: 22,
                 fontWeight: FontWeight.w900)),
         backgroundColor: Colors.white,
@@ -26,7 +26,7 @@ class AdminDashboardScreen extends StatelessWidget {
               'مناقشة كتاب عبق الحرف',
               style: TextStyle(
                   fontSize: 22,
-                  fontFamily: 'Tajawal',
+                  fontFamily: 'Rubik',
                   fontWeight: FontWeight.w900),
             ),
             SizedBox(height: 20),
@@ -57,9 +57,9 @@ class AdminDashboardScreen extends StatelessWidget {
               fontSize: 20,
               fontWeight: FontWeight.w800,
               color: Colors.white,
-              fontFamily: 'Tajawal')),
+              fontFamily: 'Rubik')),
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFF1a2833),
+        backgroundColor: Color(0xFF0a2332),
         padding: EdgeInsets.symmetric(vertical: 12),
         minimumSize: Size(double.infinity, 50),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),

@@ -1,3 +1,4 @@
+import 'package:cafe/screens/cafe_manger/SendNotificationScreen/SendNotificationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,7 +7,7 @@ class CustomerInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           'معلومات العميل',
@@ -57,15 +58,15 @@ class CustomerInfoScreen extends StatelessWidget {
             ),
             SizedBox(height: 24),
             ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {Get.to(SendNotificationScreen());},
               label: Icon(Icons.notifications, color: Colors.white),
               icon: Text(
                 'إرسال إشعار للعميل   ',
-                style: TextStyle(fontSize: 18,color: Colors.white),
+                style: TextStyle(fontSize: 18,fontFamily: 'Rubik',color: Colors.white),
               ),
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 44),
-                backgroundColor: Color(0xFF1a2833),
+                backgroundColor: Color(0xFF0a2332),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),

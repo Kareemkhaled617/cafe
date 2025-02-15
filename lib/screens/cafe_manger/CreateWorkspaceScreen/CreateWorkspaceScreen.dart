@@ -49,7 +49,7 @@ class CreateWorkspaceScreen extends StatelessWidget {
             style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
-                fontFamily: 'Tajawal')),
+                fontFamily: 'Rubik')),
         SizedBox(height: 6),
         TextField(
           decoration: InputDecoration(
@@ -73,7 +73,7 @@ class CreateWorkspaceScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('الصورة:', style: TextStyle(fontSize: 16, fontFamily: 'Tajawal')),
+        Text('الصورة:', style: TextStyle(fontSize: 16, fontFamily: 'Rubik')),
         SizedBox(height: 6),
         Container(
           height: 60,
@@ -102,7 +102,7 @@ class CreateWorkspaceScreen extends StatelessWidget {
         ),
         child: Text('إنشاء',
             style: TextStyle(
-                fontSize: 20, fontFamily: 'Tajawal', color: Colors.white)),
+                fontSize: 20, fontFamily: 'Rubik', color: Colors.white)),
       ),
     );
   }

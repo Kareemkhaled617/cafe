@@ -6,6 +6,7 @@ import '../ResetPasswordScreen/ResetPasswordScreen.dart';
 import '../SignupScreen/SignupScreen.dart';
 import '../cafe_admin_layout/cafe_admin_layout.dart';
 import '../cafe_manger/ProfileScreen/ProfileScreen.dart';
+import '../dashboard_screen/dashboard_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -73,7 +74,7 @@ class SignInScreen extends StatelessWidget {
                     height: constraints.maxWidth > 600 ? 60 : 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.to(ProfileScreen());
+                        Get.to(DashboardScreen());
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF0a2332),
@@ -103,8 +104,8 @@ class SignInScreen extends StatelessWidget {
                       'ليس لديك حساب؟ سجل الآن',
                       style: TextStyle(
                         fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'Tajawal',
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Rubik',
                         color: Colors.black,
                       ),
                     ),

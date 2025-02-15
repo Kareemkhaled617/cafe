@@ -1,14 +1,70 @@
+import 'package:cafe/screens/cafe_manger/SendNotificationScreen/SendNotificationScreen.dart';
+import 'package:cafe/screens/cafe_manger/WorkSpaceManagmentScreen/WorkSpaceManagmentScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../cafe_manger/SendNotificationScreen/SendNotificationScreen.dart';
+import '../../cafe_manger/EventManagmentScreen/EventManagementScreen.dart';
+import '../../cafe_manger/ProfileScreen/ProfileScreen.dart';
+import '../../cafe_manger/RewardsScreen/RewardsScreen.dart';
 
-class CustomerInfoScreen extends StatelessWidget {
+
+class CustomerInfoScreen extends StatefulWidget {
   const CustomerInfoScreen({super.key});
+
+  @override
+  State<CustomerInfoScreen> createState() => _CustomerInfoScreenState();
+}
+
+class _CustomerInfoScreenState extends State<CustomerInfoScreen> {
+  int _selectedIndex = 1;
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Get.to(RewardsScreen());
+        break;
+      case 1:
+        Get.to(EventManagementScreen());
+        break;
+      case 2:
+        Get.to(WorkspaceManagementScreen());
+      case 3:
+        Get.to(ProfileScreen());
+        break;
+    }
+  }
+  BottomNavigationBarItem _buildNavItem(IconData icon, String label, int index) {
+    return BottomNavigationBarItem(
+      icon: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: _selectedIndex == index ? Color(0xFF0a2332) : Colors.transparent,
+
+        ),
+        child: Icon(icon, color: _selectedIndex == index ? Colors.white : Color(0xFF0a2332)),
+      ),
+      label: label,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.white,
+        onTap: _onItemTapped,
+        items: [
+          _buildNavItem(Icons.card_giftcard_rounded, '',0),
+          _buildNavItem(Icons.grid_on_rounded,'', 1),
+          _buildNavItem(Icons.calendar_month, "", 2),
+          _buildNavItem(Icons.person, "", 3),
+        ],
+      ),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           'معلومات العميل',
@@ -59,28 +115,25 @@ class CustomerInfoScreen extends StatelessWidget {
             ),
             SizedBox(height: 24),
             ElevatedButton.icon(
-              onPressed: () {
-                Get.to(SendNotificationScreen());
-              },
+              onPressed: () {Get.to(SendNotificationScreen());},
               label: Icon(Icons.notifications, color: Colors.white),
               icon: Text(
                 'إرسال إشعار للعميل   ',
-                style: TextStyle(fontSize: 18,color: Colors.white),
+                style: TextStyle(fontSize: 18,fontFamily: 'Rubik',color: Colors.white),
               ),
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 44),
-                backgroundColor: Color(0xFF1a2833),
+                backgroundColor: Color(0xFF0a2332),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
             ),
-            Spacer(),
 
           ],
         ),
       ),
     );
   }
-
 }
+

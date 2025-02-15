@@ -48,7 +48,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: Image.asset(
                     'assets/image/logo.png',
                     width: double.infinity,
-                    height: 200,
+                    height: 250,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -65,7 +65,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w900,
-                      color: Colors.black87,
+                      color: Color(0xFF0a2332),
                     ),
                   ),
                   SizedBox(height: 10),
@@ -148,7 +148,7 @@ class _SignupScreenState extends State<SignupScreen> {
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
-              title: const Text('الشروط والأحكام', textAlign: TextAlign.center),
+              title: const Text('الشروط والأحكام', style:TextStyle( color: Color(0xFF0a2332),),textAlign: TextAlign.center),
               content: SizedBox(
                 height: 300, // تحديد ارتفاع ثابت للتمكن من التمرير
                 child: SingleChildScrollView(
@@ -208,7 +208,7 @@ class CustomTextField extends StatelessWidget {
         textAlign: TextAlign.right,
         decoration: InputDecoration(
           hintText: label,
-          hintStyle: TextStyle(fontWeight: FontWeight.w800, fontSize: 18),
+          hintStyle: TextStyle(color: Color(0xFF0a2332),fontWeight: FontWeight.w800, fontSize: 18),
           contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),

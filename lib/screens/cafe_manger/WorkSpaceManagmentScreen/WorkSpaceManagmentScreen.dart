@@ -1,3 +1,6 @@
+import 'package:cafe/screens/cafe_manger/EventManagmentScreen/EventManagementScreen.dart';
+import 'package:cafe/screens/cafe_manger/ProfileScreen/ProfileScreen.dart';
+import 'package:cafe/screens/cafe_manger/RewardsScreen/RewardsScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -5,27 +8,77 @@ import '../../user/CreateWorkspaceScreen/CreateWorkspaceScreen.dart';
 import '../../user/CustomerInfoScreen/CustomerInfoScreen.dart';
 import '../../user/EditWorkspaceScreen/EditWorkspaceScreen.dart';
 
-class WorkspaceManagementScreen extends StatelessWidget {
+class WorkspaceManagementScreen extends StatefulWidget {
   const WorkspaceManagementScreen({super.key});
+
+  @override
+  State<WorkspaceManagementScreen> createState() => _WorkspaceManagementScreenState();
+}
+
+class _WorkspaceManagementScreenState extends State<WorkspaceManagementScreen> {
+  int _selectedIndex = 2;
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Get.to(RewardsScreen());
+        break;
+      case 1:
+        Get.to(EventManagementScreen());
+        break;
+      case 2:
+        Get.to(WorkspaceManagementScreen());
+      case 3:
+        Get.to(ProfileScreen());
+        break;
+    }
+  }
+  BottomNavigationBarItem _buildNavItem(IconData icon, String label, int index) {
+    return BottomNavigationBarItem(
+      icon: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: _selectedIndex == index ? Color(0xFF0a2332) : Colors.transparent,
+
+        ),
+        child: Icon(icon, color: _selectedIndex == index ? Colors.white : Color(0xFF0a2332)),
+      ),
+      label: label,
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
+    return Scaffold( bottomNavigationBar: BottomNavigationBar(
+      currentIndex: _selectedIndex,
+
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.grey,
+      backgroundColor: Colors.white,
+      onTap: _onItemTapped,
+      items: [
+        _buildNavItem(Icons.card_giftcard_rounded, '',0),
+        _buildNavItem(Icons.grid_on_rounded,'', 1),
+        _buildNavItem(Icons.calendar_month, "", 2),
+        _buildNavItem(Icons.person, "", 3),
+      ],
+    ),
       appBar: AppBar(
         title: Text(
-          'مساحات العمل',
+          '    مساحات العمل',
           style: TextStyle(
             fontFamily: 'Rubik',
             fontSize: screenWidth * 0.05, // Responsive font size
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
           ),
         ),
         backgroundColor: Colors.white70,
         elevation: 0,
-        centerTitle: true,
+
         actions: [
           Padding(
             padding: EdgeInsets.all(screenWidth * 0.01),
@@ -34,7 +87,7 @@ class WorkspaceManagementScreen extends StatelessWidget {
                 Get.to(CreateWorkspaceScreen());
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF192732),
+                backgroundColor: Color(0xFF0a2332),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -78,7 +131,7 @@ class WorkspaceManagementScreen extends StatelessWidget {
                   'مساحات العمل المحجوزة',
                   style: TextStyle(
                     fontSize: screenWidth * 0.045,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     fontFamily: 'Rubik',
                   ),
                 ),
@@ -150,7 +203,7 @@ class WorkspaceManagementScreen extends StatelessWidget {
                     Get.to(CustomerInfoScreen());
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey,
+                    backgroundColor: Color(0xFFd3d3d3),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -160,7 +213,7 @@ class WorkspaceManagementScreen extends StatelessWidget {
                     style: TextStyle(
                         fontFamily: 'Rubik',
                         color: Colors.black,
-                        backgroundColor: Colors.grey),
+                        backgroundColor:  Color(0xFFd3d3d3),),
                   ),
                 ),
               ],
@@ -205,7 +258,7 @@ class WorkspaceManagementScreen extends StatelessWidget {
                       Get.to(EditWorkspaceScreen());
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey.withOpacity(.2),
+                      backgroundColor:  Color(0xFFd3d3d3),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),

@@ -2,6 +2,9 @@ import 'package:cafe/screens/cafe_manger/ProfileScreen/ProfileScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../EventManagmentScreen/EventManagementScreen.dart';
+import '../RewardsScreen/RewardsScreen.dart';
+import '../WorkSpaceManagmentScreen/WorkSpaceManagmentScreen.dart';
 import 'ChangePasswordDialog.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -12,10 +15,53 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 3;
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Get.to(RewardsScreen());
+        break;
+      case 1:
+        Get.to(EventManagementScreen());
+        break;
+      case 2:
+        Get.to(WorkspaceManagementScreen());
+      case 3:
+        Get.to(ProfileScreen());
+        break;
+    }
+  }
+  BottomNavigationBarItem _buildNavItem(IconData icon, String label, int index) {
+    return BottomNavigationBarItem(
+      icon: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: _selectedIndex == index ? Color(0xFF0a2332) : Colors.transparent,
+
+        ),
+        child: Icon(icon, color: _selectedIndex == index ? Colors.white : Color(0xFF0a2332)),
+      ),
+      label: label,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.white,
+        onTap: _onItemTapped,
+        items: [
+          _buildNavItem(Icons.card_giftcard_rounded, '',0),
+          _buildNavItem(Icons.grid_on_rounded,'', 1),
+          _buildNavItem(Icons.calendar_month, "", 2),
+          _buildNavItem(Icons.person, "", 3),
+        ],
+      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -33,7 +79,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
         child: SingleChildScrollView(
 
-          child: Column(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'الصورة',
@@ -41,8 +87,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     fontSize: 16,
 
                     fontFamily: 'Rubik',
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFF0a2332)),
               ),
               Container(
                 width: double.infinity,
@@ -64,7 +110,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
               ),
               SizedBox(height: 16),
-              buildTextField('مساحة رو | ROW Space', 'الاسم',),
+              buildTextField( 'الاسم','مساحة رو | ROW Space',),
               buildTextField('الوصف',
                   'مقهى ومحمصة رو | تعزز الثقافة والأدب عبر فعاليات إبداعية ضمن مبادرة #الشريك_الأدبي'),
               buildTextField('الإيميل',"RowCafe@gmail.com" ),
@@ -130,7 +176,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         children: [
           Text(
             label,
-            style: TextStyle(fontSize: 18,      fontFamily: 'Rubik',fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18,      fontFamily: 'Rubik',fontWeight: FontWeight.w500,color:  Color(0xFF0a2332)),
           ),
           SizedBox(
             height: 2,

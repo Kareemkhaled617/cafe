@@ -1,5 +1,11 @@
+import 'package:cafe/screens/cafe_manger/CreateWorkspaceScreen/CreateTime.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../EventManagmentScreen/EventManagementScreen.dart';
+import '../ProfileScreen/ProfileScreen.dart';
+import '../RewardsScreen/RewardsScreen.dart';
+import '../WorkSpaceManagmentScreen/WorkSpaceManagmentScreen.dart';
 
 class EditWorkspaceScreen extends StatefulWidget {
   const EditWorkspaceScreen({super.key});
@@ -9,6 +15,37 @@ class EditWorkspaceScreen extends StatefulWidget {
 }
 
 class _EditWorkspaceScreenState extends State<EditWorkspaceScreen> {
+  int _selectedIndex = 2;
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Get.to(RewardsScreen());
+        break;
+      case 1:
+        Get.to(EventManagementScreen());
+        break;
+      case 2:
+        Get.to(WorkspaceManagementScreen());
+      case 3:
+        Get.to(ProfileScreen());
+        break;
+    }
+  }
+  BottomNavigationBarItem _buildNavItem(IconData icon, String label, int index) {
+    return BottomNavigationBarItem(
+      icon: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: _selectedIndex == index ? Color(0xFF0a2332) : Colors.transparent,
+
+        ),
+        child: Icon(icon, color: _selectedIndex == index ? Colors.white : Color(0xFF0a2332)),
+      ),
+      label: label,
+    );
+  }
+
   TextEditingController nameController =
       TextEditingController(text: 'مكتب مشترك');
   TextEditingController descriptionController = TextEditingController();
@@ -24,10 +61,25 @@ class _EditWorkspaceScreenState extends State<EditWorkspaceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      bottomNavigationBar: BottomNavigationBar(
+      currentIndex: _selectedIndex,
+
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.grey,
+      backgroundColor: Colors.white,
+      onTap: _onItemTapped,
+      items: [
+        _buildNavItem(Icons.card_giftcard_rounded, '',0),
+        _buildNavItem(Icons.grid_on_rounded,'', 1),
+        _buildNavItem(Icons.calendar_month, "", 2),
+        _buildNavItem(Icons.person, "", 3),
+      ],
+    ),
       appBar: AppBar(
         title: Text('تعديل مساحة عمل',
             style: TextStyle(
-                fontFamily: 'Tajawal',
+                fontFamily: 'Rubik',
                 fontSize: 22,
                 fontWeight: FontWeight.w900)),
         backgroundColor: Colors.white,
@@ -47,7 +99,7 @@ class _EditWorkspaceScreenState extends State<EditWorkspaceScreen> {
             SizedBox(height: 12),
             _buildTextField('السعر بالساعة', priceController),
             SizedBox(height: 12),
-            _buildAvailableTimes(),
+            CreateTime(),
             SizedBox(height: 12),
             _buildImageUpload(),
             SizedBox(height: 20),
@@ -65,16 +117,16 @@ class _EditWorkspaceScreenState extends State<EditWorkspaceScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text('$label : ',
-            style: TextStyle(fontSize: 18, fontFamily: 'Tajawal')),
+            style: TextStyle(fontSize: 18, fontFamily: 'Rubik')),
         SizedBox(height: 6),
         TextField(
           controller: controller,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Colors.grey[200],
+            fillColor: Colors.white,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
-              borderSide: BorderSide(color: Colors.grey.shade200),
+              borderSide: BorderSide(color: Colors.white),
             ),
           ),
         ),
@@ -116,7 +168,7 @@ class _EditWorkspaceScreenState extends State<EditWorkspaceScreen> {
         Container(
           height: 60,
           decoration: BoxDecoration(
-            color: Colors.grey[200],
+            color: Colors.white,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Center(

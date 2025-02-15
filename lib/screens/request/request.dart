@@ -1,10 +1,11 @@
+import 'package:cafe/screens/cafe_admin_layout/cafe_admin_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../cafe_request_info/cafe_request_info.dart';
 
-class RegistrationRequestsScreen extends StatelessWidget {
-  const RegistrationRequestsScreen({super.key});
+class RequestsScreen extends StatelessWidget {
+  const RequestsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,29 +15,31 @@ class RegistrationRequestsScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
+      appBar: AppBar(leading: Text(''),
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
           'طلبات الانضمام',
-          style: TextStyle(fontSize: width * 0.08, fontWeight: FontWeight.w900),
+          style: TextStyle(color:Color(0xFF0a2332),fontFamily:'Rubik',fontSize: width * 0.08, fontWeight: FontWeight.w900),
+    
         ),
         centerTitle: true,
       ),
       body: ListView(
         padding: EdgeInsets.all(width * 0.04),
         children: [
-          RequestItem(name: 'عرب', date: '2024/9/12', width: width),
+          RequestItem(name: 'عريب', date: '2024/9/12', width: width),
           RequestItem(name: 'حبر', date: '2024/9/12', width: width),
           RequestItem(name: 'كفة', date: '2024/10/2', width: width),
           RequestItem(name: 'هارينا', date: '2024/11/2', width: width),
         ],
       ),
+
     );
   }
 }
 
-class RequestItem extends StatelessWidget {
+class RequestItem extends StatefulWidget {
   final String name;
   final String date;
   final double width;
@@ -44,12 +47,17 @@ class RequestItem extends StatelessWidget {
   const RequestItem({required this.name, required this.date, required this.width});
 
   @override
+  State<RequestItem> createState() => _RequestItemState();
+}
+
+class _RequestItemState extends State<RequestItem> {
+  @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.symmetric(vertical: width * 0.02),
+    return Card(color: Colors.white,
+      margin: EdgeInsets.symmetric(vertical: widget.width * 0.02),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
-        padding: EdgeInsets.all(width * 0.04),
+        padding: EdgeInsets.all(widget.width * 0.04),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -57,17 +65,17 @@ class RequestItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name,
+                  widget.name,
                   style: TextStyle(
-                    fontSize: width * 0.05,
+                    fontSize: widget.width * 0.05,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
-                SizedBox(height: width * 0.01),
+                SizedBox(height: widget.width * 0.01),
                 Text(
-                  'تاريخ الطلب $date',
+                  'تاريخ الطلب ${widget.date}',
                   style: TextStyle(
-                    fontSize: width * 0.045,
+                    fontSize: widget.width * 0.045,
                     color: Colors.grey[800],
                   ),
                 ),
@@ -79,20 +87,21 @@ class RequestItem extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.black,
-                backgroundColor: Colors.amber[100],
+                backgroundColor: Color(0xFFede1c3),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(28),
                 ),
                 padding: EdgeInsets.symmetric(
-                  horizontal: width * 0.06,
-                  vertical: width * 0.02,
+                  horizontal: widget.width * 0.06,
+                  vertical: widget.width * 0.02,
                 ),
               ),
               child: Text(
                 'مراجعة الطلب',
-                style: TextStyle(
+                style: TextStyle(fontFamily: 'Rubik',
                   fontWeight: FontWeight.w800,
-                  fontSize: width * 0.045,
+color: Color(0xFF0a2332),
+                  fontSize: widget.width * 0.045,
                 ),
               ),
             ),
