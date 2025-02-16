@@ -37,6 +37,7 @@ dependencies:
   file_picker:
   url_launcher:
   lucide_icons:
+  table_calendar:
 dev_dependencies:
   flutter_test:
     sdk: flutter

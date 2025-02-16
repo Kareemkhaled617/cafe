@@ -1,27 +1,80 @@
+import 'package:cafe/screens/cafe_manger/AdminDashboardScreen/AdminDashboardScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../CreateEventScreen/CreateEventScreen.dart';
+import '../ProfileScreen/ProfileScreen.dart';
+import '../RewardsScreen/RewardsScreen.dart';
+import '../WorkSpaceManagmentScreen/WorkSpaceManagmentScreen.dart';
 
-class EventManagementScreen extends StatelessWidget {
+class EventManagementScreen extends StatefulWidget {
   const EventManagementScreen({super.key});
+
+  @override
+  State<EventManagementScreen> createState() => _EventManagementScreenState();
+}
+
+class _EventManagementScreenState extends State<EventManagementScreen> {
+  int _selectedIndex = 1;
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Get.to(RewardsScreen());
+        break;
+      case 1:
+        Get.to(EventManagementScreen());
+        break;
+      case 2:
+        Get.to(WorkspaceManagementScreen());
+      case 3:
+        Get.to(ProfileScreen());
+        break;
+    }
+  }
+  BottomNavigationBarItem _buildNavItem(IconData icon, String label, int index) {
+    return BottomNavigationBarItem(
+      icon: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: _selectedIndex == index ? Color(0xFF0a2332) : Colors.transparent,
+
+        ),
+        child: Icon(icon, color: _selectedIndex == index ? Colors.white : Color(0xFF0a2332)),
+      ),
+      label: label,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.white,
+        onTap: _onItemTapped,
+        items: [
+          _buildNavItem(Icons.card_giftcard_rounded, '',0),
+          _buildNavItem(Icons.grid_on_rounded,'', 1),
+          _buildNavItem(Icons.calendar_month, "", 2),
+          _buildNavItem(Icons.person, "", 3),
+        ],
+      ),
       appBar: AppBar(
         leading: Image.asset(
           'assets/image/logo.png',
           fit: BoxFit.cover,
         ),
-        title: Text('قائمة الفعاليات',
-            style: TextStyle(
+        title: Text('  قائمة الفعاليات',
+            style: TextStyle(color:  Color(0xFF0a2332),
                 fontFamily: 'Rubik',
                 fontSize: 22,
                 fontWeight: FontWeight.w900)),
         backgroundColor: Colors.white,
         elevation: 0,
-        centerTitle: true,
+
         actions: [
           Padding(
             padding: EdgeInsets.all(8.0),
@@ -30,7 +83,7 @@ class EventManagementScreen extends StatelessWidget {
                 Get.to(CreateEventScreen());
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF1a2833),
+                backgroundColor:  Color(0xFF0a2332),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
               ),
@@ -41,6 +94,7 @@ class EventManagementScreen extends StatelessWidget {
           ),
         ],
       ),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.all(16),
         child: ListView(
@@ -58,7 +112,7 @@ class EventManagementScreen extends StatelessWidget {
   }
 
   Widget _eventCard(String title, String date, String description) {
-    return Card(
+    return Card(color: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 3,
       child: Padding(
@@ -70,23 +124,23 @@ class EventManagementScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(title,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Tajawal')),
+                      style: TextStyle(color: Color(0xFF0a2332),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'Rubik')),
                 ),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {Get.to(AdminDashboardScreen());},
                     icon: Icon(
-                      Icons.settings,
+                      Icons.settings,color:  Color(0xFF0a2332),
                       size: 30,
                     ))
               ],
             ),
             SizedBox(height: 6),
-            Text('التاريخ: $date', style: TextStyle(fontFamily: 'Rubik')),
+            Text('التاريخ: $date', style: TextStyle(fontSize:14,color: Color(0xFF0a2332),fontFamily: 'Rubik')),
             SizedBox(height: 4),
-            Text(description, style: TextStyle(fontFamily: 'Rubik')),
+            Text(description, style: TextStyle(fontSize:14,color: Color(0xFF0a2332), fontFamily: 'Rubik')),
             SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -94,7 +148,7 @@ class EventManagementScreen extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey.withOpacity(.4),
+                    backgroundColor: Color(0xFFd3d3d3),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                   ),
@@ -108,7 +162,7 @@ class EventManagementScreen extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey.withOpacity(.4),
+                    backgroundColor:  Color(0xFFd3d3d3),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                   ),

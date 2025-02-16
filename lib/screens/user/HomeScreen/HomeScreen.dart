@@ -1,272 +1,432 @@
+import 'package:cafe/screens/user/UpcomingEventsScreen/UpcomingEventsScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:cafe/screens/user/NotificationsScreen/NotificationsScreen.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class NewScreen extends StatefulWidget {
+  const NewScreen({super.key});
+
+  @override
+  State<NewScreen> createState() => _NewScreenState();
+}
+
+class _NewScreenState extends State<NewScreen> {
+  bool switchValue = true;
+  PageController pageController = PageController();
+  PageController pageController1 = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          leading: Icon(Icons.notifications, color: Colors.black),
-          centerTitle: true,
-          title: Image.asset(
-            'assets/image/logo.png', // Replace with actual logo path
-            height: 40,
-          ),
-        ),
-      ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                // Background Image with Overlay
-                Stack(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset(
-                      'assets/image/logo.png', // Replace with actual image
-                      width: double.infinity,
-                      height: 180,
+                    Image(
+                      image: AssetImage('assets/image/logo.png'),
+                      width: 60,
+                      height: 60,
                       fit: BoxFit.cover,
                     ),
-                    Positioned.fill(
-                      child: Container(
-                        color: Colors.black.withOpacity(0.3),
+                    InkWell(
+                        onTap: () {
+                          Get.to(NotificationsScreen());
+                        },
+                        child: Icon(Icons.notifications)),
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 200,
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/image/img.jpg'),
+                        fit: BoxFit.cover)),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            hintText: 'ابحث عن فعالية',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white),
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(2)),
+                          child: DropdownButton<String>(
+                            value: 'جميع اللغات',
+                            items: [
+                              DropdownMenuItem(
+                                  value: 'جميع اللغات',
+                                  child: Text('جميع اللغات')),
+                            ],
+                            onChanged: (value) {},
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(2)),
+                          child: DropdownButton<String>(
+                            value: 'كل الأماكن',
+                            items: [
+                              DropdownMenuItem(
+                                  value: 'كل الأماكن',
+                                  child: Text('كل الأماكن')),
+                            ],
+                            onChanged: (value) {},
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SwitchListTile(
+                      title: Text('السماح بالوصول لموقعك'),
+                      value: switchValue,
+                      onChanged: (value) {
+                        setState(() {
+                          switchValue = value;
+                        });
+                      },
+                    ),
+                    SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('الفعاليات القريبة',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w800)),
+                        InkWell(
+                          onTap: (){
+                            Get.to(UpcomingEventsScreen());
+                          },
+                          child: Text('أعرض الكل',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w900)),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child:
+                            Image(image: AssetImage('assets/image/img.jpg'))),
+                    SizedBox(height: 16),
+                    Text('الفعاليات القادمة',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold)),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // Previous Page Button
+                          IconButton(
+                            onPressed: () {
+                              if (pageController.hasClients) {
+                                pageController.previousPage(
+                                  duration: Duration(milliseconds: 300),
+                                  // Fixed duration
+                                  curve: Curves.easeInOut, // Smoother animation
+                                );
+                              }
+                            },
+                            icon: Icon(Icons.arrow_back_ios_new),
+                          ),
+
+                          // PageView for Images
+                          SizedBox(
+                            height: 300,
+                            width: Get.width - 130,
+                            child: PageView(
+                              controller: pageController,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12.0),
+                                  child: Stack(
+                                    fit: StackFit.expand,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image.asset(
+                                          'assets/image/img.jpg',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 20,
+                                        right: 0,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 12, vertical: 6),
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(16)),
+                                          child: Text(
+                                            'مناقشه كتاب عبق الحروف',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        bottom: 10,
+                                        left: 8,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 12, vertical: 6),
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(16)),
+                                          child: Text(
+                                            ' 11 / 12',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12.0),
+                                  child: Stack(
+                                    fit: StackFit.expand,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image.asset(
+                                          'assets/image/img.jpg',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 20,
+                                        right: 0,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 12, vertical: 6),
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(16)),
+                                          child: Text(
+                                            'مناقشه كتاب عبق الحروف',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        bottom: 10,
+                                        left: 8,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 12, vertical: 6),
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(16)),
+                                          child: Text(
+                                            ' 11 / 12',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          // Next Page Button
+                          IconButton(
+                            onPressed: () {
+                              if (pageController.hasClients) {
+                                pageController.nextPage(
+                                  duration: Duration(milliseconds: 300),
+                                  // Fixed duration
+                                  curve: Curves.easeInOut, // Smoother animation
+                                );
+                              }
+                            },
+                            icon: Icon(Icons.arrow_forward_ios_rounded),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    Text('مساحات العمل',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold)),
+                    SizedBox(height: 16),
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // Previous Page Button
+                          IconButton(
+                            onPressed: () {
+                              if (pageController1.hasClients) {
+                                pageController1.previousPage(
+                                  duration: Duration(milliseconds: 300),
+                                  // Fixed duration
+                                  curve: Curves.easeInOut, // Smoother animation
+                                );
+                              }
+                            },
+                            icon: Icon(Icons.arrow_back_ios_new),
+                          ),
+
+                          // PageView for Images
+                          SizedBox(
+                            height: 300,
+                            width: Get.width - 130,
+                            child: PageView(
+                              controller: pageController1,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12.0),
+                                  child: Stack(
+                                    fit: StackFit.expand,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image.asset(
+                                          'assets/image/img.jpg',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 20,
+                                        right: 0,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 12, vertical: 6),
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(16)),
+                                          child: Text(
+                                            'افانجارديا',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12.0),
+                                  child: Stack(
+                                    fit: StackFit.expand,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image.asset(
+                                          'assets/image/img.jpg',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 20,
+                                        right: 0,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 12, vertical: 6),
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(16)),
+                                          child: Text(
+                                            'افانجارديا',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          // Next Page Button
+                          IconButton(
+                            onPressed: () {
+                              if (pageController1.hasClients) {
+                                pageController1.nextPage(
+                                  duration: Duration(milliseconds: 300),
+                                  // Fixed duration
+                                  curve: Curves.easeInOut, // Smoother animation
+                                );
+                              }
+                            },
+                            icon: Icon(Icons.arrow_forward_ios_rounded),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
-
-                SizedBox(height: 16),
-
-                // Search Bar & Filters
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(
-                    children: [
-                      // Search Field
-                      TextField(
-                        textAlign: TextAlign.right,
-                        decoration: InputDecoration(
-                          hintText: 'ابحث عن فعالية',
-                          hintStyle: TextStyle(fontFamily: 'Tajawal'),
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            borderSide: BorderSide.none,
-                          ),
-                          prefixIcon: Icon(Icons.search, color: Colors.black),
-                        ),
-                      ),
-
-                      SizedBox(height: 10),
-
-                      // Filters
-                      Row(
-                        children: [
-                          Expanded(
-                            child: DropdownButtonFormField(
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
-                              value: 'كل الأماكن',
-                              items: ['كل الأماكن', 'الرياض', 'جدة', 'المدينة المنورة']
-                                  .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                                  .toList(),
-                              onChanged: (value) {},
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Expanded(
-                            child: DropdownButtonFormField(
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
-                              value: 'جميع اللغات',
-                              items: ['جميع اللغات', 'العربية', 'الإنجليزية']
-                                  .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                                  .toList(),
-                              onChanged: (value) {},
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-
-                SizedBox(height: 10),
-
-                // Location Permission Toggle
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'السماح بالوصول لموقعك',
-                        style: TextStyle(fontSize: 16, fontFamily: 'Tajawal'),
-                      ),
-                      Switch(
-                        value: true,
-                        onChanged: (bool value) {},
-                        activeColor: Colors.black,
-                      ),
-                    ],
-                  ),
-                ),
-
-                SizedBox(height: 10),
-
-                // Nearby Events
-                SectionHeader(title: 'الفعاليات القريبة'),
-                EventCard(
-                  title: 'الأبل في أدب الصحراء',
-                  description: 'محاور الجلسة: الأدب والبيئة، المعركة عند العربي...',
-                  imageUrl: 'assets/image/img.jpg',
-                ),
-
-                SizedBox(height: 10),
-
-                // Upcoming Events Carousel
-                SectionHeader(title: 'الفعاليات القادمة', showMore: true),
-                EventCarousel(),
-
-                SizedBox(height: 10),
-
-                // Workspaces Carousel
-                SectionHeader(title: 'مساحات العمل'),
-                WorkspaceCarousel(),
-
-                SizedBox(height: 20),
-              ],
-            ),
-          );
-        },
-      ),
-
-    );
-  }
-}
-
-// Section Header Widget
-class SectionHeader extends StatelessWidget {
-  final String title;
-  final bool showMore;
-
-  SectionHeader({required this.title, this.showMore = false});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          if (showMore)
-            Text(
-              'اعرض الكل',
-              style: TextStyle(fontSize: 14, fontFamily: 'Tajawal', color: Colors.blue),
-            ),
-          Text(
-            title,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Tajawal'),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
-  }
-}
-
-// Event Card Widget
-class EventCard extends StatelessWidget {
-  final String title;
-  final String description;
-  final String imageUrl;
-
-  EventCard({required this.title, required this.description, required this.imageUrl});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16),
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.amber[50],
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Text(
-            title,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Tajawal'),
-          ),
-          SizedBox(height: 5),
-          Text(
-            description,
-            style: TextStyle(fontSize: 14, fontFamily: 'Tajawal'),
-          ),
-          SizedBox(height: 10),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.asset(imageUrl, height: 100, width: double.infinity, fit: BoxFit.cover),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// Event Carousel Widget
-class EventCarousel extends StatelessWidget {
-  const EventCarousel({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 150,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: [
-          EventCard(title: 'مناقشة كتاب عبق الحرف', description: '', imageUrl: 'assets/image/img.jpg'),
-          EventCard(title: 'ورشة الخط العربي', description: '', imageUrl: 'assets/image/img.jpg'),
-        ],
-      ),
-    );
-  }
-}
-
-// Workspace Carousel Widget
-class WorkspaceCarousel extends StatelessWidget {
-  const WorkspaceCarousel({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 150,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: [
-          EventCard(title: 'أفينجارديا', description: '', imageUrl: 'assets/image/img.jpg'),
-          EventCard(title: 'مكان للإبداع', description: '', imageUrl: 'assets/image/img.jpg'),
-        ],
+        ),
       ),
     );
   }

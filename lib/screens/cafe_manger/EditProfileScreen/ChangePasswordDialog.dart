@@ -1,7 +1,4 @@
-import 'package:cafe/screens/cafe_manger/EditProfileScreen/EditProfileScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class ChangePasswordDialog extends StatefulWidget {
   const ChangePasswordDialog({super.key});
@@ -20,10 +17,10 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: Color(0xFFe1e1e1),
+      backgroundColor: Color(0xFF919190),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +37,6 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
                   "تغيير كلمة المرور",
                   style: TextStyle(
                     fontSize: 18,
-                    fontFamily: 'Rubik',
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -49,33 +45,15 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
               ],
             ),
             SizedBox(height: 12),
-            Text(
-              " كلمة المرورالجديدة",
-              style: TextStyle(
-                fontSize: 18,
-                fontFamily: 'Rubik',
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-            SizedBox(height: 5),
             _buildPasswordField(
-                "", _passwordController, _isPasswordVisible,
+                "كلمة المرور الجديدة", _passwordController, _isPasswordVisible,
                 () {
               setState(() {
                 _isPasswordVisible = !_isPasswordVisible;
               });
             }),
             SizedBox(height: 12),
-            Text(
-              " تأكيد كلمة المرور",
-              style: TextStyle(
-                fontSize: 18,
-                fontFamily: 'Rubik',
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-            SizedBox(height: 5),
-            _buildPasswordField("", _confirmPasswordController,
+            _buildPasswordField("تأكيد كلمة المرور", _confirmPasswordController,
                 _isConfirmPasswordVisible, () {
               setState(() {
                 _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
@@ -84,16 +62,16 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
             SizedBox(height: 16),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff0a2332),
+                backgroundColor: Colors.grey[800],
                 padding: EdgeInsets.symmetric(vertical: 12),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
               ),
-              onPressed: () {Get.back();},
+              onPressed: () {},
               child: Center(
                 child: Text(
                   "حفظ التغييرات",
-                  style: TextStyle(fontSize: 16,       fontFamily: 'Rubik',color: Colors.white),
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ),
@@ -105,18 +83,15 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
 
   Widget _buildPasswordField(String label, TextEditingController controller,
       bool isVisible, VoidCallback toggleVisibility) {
-    return Container(decoration: BoxDecoration(color: Colors.white),
-      child: TextField(
-        controller: controller,
-        obscureText: !isVisible,
-
-        decoration: InputDecoration(
-          labelText: label,
-
-          suffixIcon: IconButton(
-            icon: Icon(isVisible ? Icons.visibility : Icons.visibility),
-            onPressed: toggleVisibility,
-          ),
+    return TextField(
+      controller: controller,
+      obscureText: !isVisible,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+        suffixIcon: IconButton(
+          icon: Icon(isVisible ? Icons.visibility : Icons.visibility_off),
+          onPressed: toggleVisibility,
         ),
       ),
     );

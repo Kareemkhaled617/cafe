@@ -24,7 +24,7 @@ class EditReviewScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              RequestDetailItem(title: 'اسم الكافيه', value: 'عرب'),
+              RequestDetailItem(title: 'اسم الكافيه', value: 'عريب'),
               RequestDetailItem(
                   title: 'الإيميل', value: 'abdullah.alkabi@gmail.com'),
               RequestDetailItem(title: 'رقم الجوال', value: '+966 50 123 4567'),

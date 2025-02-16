@@ -1,5 +1,9 @@
+import 'package:cafe/screens/user/NotificationsScreen/NotificationsScreen.dart';
+import 'package:cafe/screens/user/MyBookingsScreen/MyBookingsScreen.dart';
+import 'package:cafe/screens/user/TicketCancellationScreen/TicketCancellationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 
 class MyTicketsScreen extends StatelessWidget {
   const MyTicketsScreen({super.key});
@@ -41,8 +45,7 @@ class MyTicketsScreen extends StatelessWidget {
                   icon: Icons.airplane_ticket,
                   constraints: constraints,
                   onTap: () {
-                    Get.snackbar("حجوزاتي", "تم الدخول إلى قسم الحجوزات",
-                        backgroundColor: Colors.blue, colorText: Colors.white);
+                    Get.to(MyBookingsScreen());
                   },
                 ),
                 TicketOption(
@@ -51,8 +54,7 @@ class MyTicketsScreen extends StatelessWidget {
                   icon: Icons.cancel,
                   constraints: constraints,
                   onTap: () {
-                    Get.snackbar("إلغاء تذاكري", "تم الدخول إلى قسم الإلغاء",
-                        backgroundColor: Colors.red, colorText: Colors.white);
+                    Get.to(TicketCancellationScreen());
                   },
                 ),
                 TicketOption(
@@ -62,8 +64,7 @@ class MyTicketsScreen extends StatelessWidget {
                   icon: Icons.notifications,
                   constraints: constraints,
                   onTap: () {
-                    Get.snackbar("إشعاراتي", "تم الدخول إلى قسم الإشعارات",
-                        backgroundColor: Colors.green, colorText: Colors.white);
+                    Get.to(NotificationsScreen());
                   },
                 ),
               ],

@@ -126,7 +126,7 @@ class WorkspaceCard extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: Colors.amber[100],
+                color: Color(0xFFe8dfc2),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(

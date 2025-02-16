@@ -1,7 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-class RequestReviewScreen extends StatelessWidget {
+import '../cafe_manger/NotificationsScreen/NotificationsScreen.dart';
+import '../dashboard_screen/dashboard_screen.dart';
+import '../list_of_cafe/list_of_cafe.dart';
+
+class RequestReviewScreen extends StatefulWidget {
   const RequestReviewScreen({super.key});
+
+  @override
+  State<RequestReviewScreen> createState() => _RequestReviewScreenState();
+}
+
+class _RequestReviewScreenState extends State<RequestReviewScreen> {
+  int _selectedIndex = 1;
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Get.to(DashboardScreen());
+        break;
+      case 1:
+        Get.to(CafeListScreen());
+        break;
+      case 2:
+        Get.to(NotificationsScreen());
+
+        break;
+    }
+  }
+  BottomNavigationBarItem _buildNavItem(IconData icon, String label, int index) {
+    return BottomNavigationBarItem(
+      icon: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: _selectedIndex == index ? Color(0xFF0a2332) : Colors.transparent,
+
+        ),
+        child: Icon(icon, color: _selectedIndex == index ? Colors.white : Color(0xFF0a2332)),
+      ),
+      label: label,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -10,13 +51,29 @@ class RequestReviewScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+
+      bottomNavigationBar: BottomNavigationBar(
+      currentIndex: _selectedIndex,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.grey,
+      backgroundColor: Colors.white,
+      onTap: _onItemTapped,
+      items: [
+        _buildNavItem(Icons.home, '',0),
+        _buildNavItem(Icons.list,"", 1),
+        _buildNavItem(Icons.notifications, "", 2),
+
+      ],
+    ),
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: Text(''),
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
           'مراجعة الطلب',
           style: TextStyle(
+            color: Color(0xFF0a2332),
             fontSize: width * 0.07,  // تعديل الحجم بناءً على عرض الشاشة
             fontWeight: FontWeight.w900,
           ),
@@ -69,9 +126,10 @@ class RequestDetailItem extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
+
               fontSize: width * 0.05,  // حجم النص ديناميكي
               fontWeight: FontWeight.w800,
-              color: Colors.black87,
+              color:  Color(0xFF0a2332),
             ),
           ),
           SizedBox(height: width * 0.01), // مسافة بين النصوص ديناميكية
@@ -79,7 +137,7 @@ class RequestDetailItem extends StatelessWidget {
             value,
             style: TextStyle(
                 fontSize: width * 0.045, // حجم النص ديناميكي
-                color: Colors.black,
+                color: Color(0xFF0a2332),
                 fontWeight: FontWeight.w700),
             textAlign: TextAlign.right,
           ),
@@ -110,14 +168,14 @@ class LicenseImageSection extends StatelessWidget {
             'صورة التصريح',
             style: TextStyle(
               fontSize: width * 0.06,  // حجم النص ديناميكي
-              fontWeight: FontWeight.w900,
-              fontFamily: 'Tajawal',
-              color: Colors.black87,
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Rubik',
+              color: Color(0xFF0a2332),
             ),
           ),
           Spacer(),
           Image.asset(
-            'assets/image/img.jpg', // استبدل المسار بالصورة الفعلية
+            'assets/image/file.png', // استبدل المسار بالصورة الفعلية
             height: width * 0.2, // الحجم ديناميكي بالنسبة لعرض الشاشة
             width: width * 0.4, // الحجم ديناميكي بالنسبة لعرض الشاشة
             fit: BoxFit.cover,
@@ -146,7 +204,7 @@ class ActionButtons extends StatelessWidget {
               // تنفيذ إجراء القبول
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.grey[400],
+              backgroundColor: Color(0xFFd3d3d3),
               padding: EdgeInsets.symmetric(vertical: width * 0.04),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -156,8 +214,8 @@ class ActionButtons extends StatelessWidget {
               'قبول',
               style: TextStyle(
                 fontSize: width * 0.04,  // حجم النص ديناميكي
-                fontFamily: 'Tajawal',
-                color: Colors.black,
+                fontFamily: 'Rubik',
+                color:  Color(0xFF0a2332),
               ),
             ),
           ),
@@ -180,7 +238,7 @@ class ActionButtons extends StatelessWidget {
               'رفض',
               style: TextStyle(
                 fontSize: width * 0.04,  // حجم النص ديناميكي
-                fontFamily: 'Tajawal',
+                fontFamily: 'Rubik',
                 color: Colors.white,
               ),
             ),

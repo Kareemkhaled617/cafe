@@ -1,152 +1,117 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../dashboard_screen/dashboard_screen.dart';
+import '../list_of_cafe/list_of_cafe.dart';
 
 class NotificationsScreen extends StatelessWidget {
-  const NotificationsScreen({super.key});
+  final List<Map<String, String>> notifications = [
+    {
+      'title': 'إضافة فعالية جديدة :رو كافيه',
+      'time': 'منذ يومين',
+    },
+    {
+      'title': 'إضافة ساعة عمل :رو كافيه',
+      'time': 'منذ أسبوع',
+    },
+    {
+      'title': 'تم تغيير الغلاف الشخصي :رو كافيه',
+      'time': 'منذ 3 أسابيع',
+    },
+  ];
+  int _selectedIndex = 2;
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Get.to(DashboardScreen());
+        break;
+      case 1:
+        Get.to(CafeListScreen());
+        break;
+      case 2:
+        Get.to(NotificationsScreen());
+
+        break;
+    }
+  }
+  BottomNavigationBarItem _buildNavItem(IconData icon, String label, int index) {
+    return BottomNavigationBarItem(
+      icon: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: _selectedIndex == index ? Color(0xFF0a2332) : Colors.transparent,
+
+        ),
+        child: Icon(icon, color: _selectedIndex == index ? Colors.white : Color(0xFF0a2332)),
+      ),
+      label: label,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-            onPressed: () => Get.back(),
-          ),
-          centerTitle: true,
-          title: Text(
-            'إشعاراتي',
+    return Scaffold( bottomNavigationBar: BottomNavigationBar(
+      currentIndex: _selectedIndex,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.grey,
+      backgroundColor: Colors.white,
+      onTap: _onItemTapped,
+      items: [
+        _buildNavItem(Icons.home, '',0),
+        _buildNavItem(Icons.list,"", 1),
+        _buildNavItem(Icons.notifications, "", 2),
+
+      ],
+    ),
+      backgroundColor: Colors.white,
+      appBar: AppBar(leading: Text(''),
+        title: Text('التنبيهات',
             style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w900,
-              fontFamily: 'Tajawal',
-              color: Colors.black,
-            ),
-          ),
+                color: Color(0xFF0a2332),
+                fontFamily: 'Rubik',
+                fontSize: 20,
+                fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView.builder(
+          itemCount: notifications.length,
+          itemBuilder: (context, index) {
+            return _buildNotificationCard(notifications[index]);
+          },
         ),
       ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          return SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            child: Column(
-              children: [
-                NotificationCard(
-                  title: 'حوارات ثقافية',
-                  description:
-                      'تذكير: فعاليتك للحوار الثقافي قادمة، تابع التحديثات وآخر الإشعارات المتعلقة بالفعالية',
-                  date: '2024-3-13 | 6:00 مساءً',
-                  imageUrl: 'assets/image/logo.png',
-                  constraints: constraints,
-                ),
-                NotificationCard(
-                  title: 'بناء الجسور',
-                  description:
-                      'تنبيه: تم تعديل موعد فعالية "بناء الجسور". يرجى متابعة التحديثات لمعرفة التفاصيل الجديدة',
-                  date: '2924-5-20 | 4:30 مساءً',
-                  imageUrl: 'assets/image/logo.png',
-                  constraints: constraints,
-                ),
-              ],
-            ),
-          );
-        },
+
+    );
+  }
+
+  Widget _buildNotificationCard(Map<String, String> notification) {
+    return Card(color: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 1,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(notification['title']!,
+                style: TextStyle(
+                    fontSize: 16, fontFamily: 'Rubik',color:  Color(0xFF0a2332), fontWeight: FontWeight.bold)),
+            SizedBox(height: 4),
+            Text(notification['time']!,
+                style: TextStyle(
+                    fontSize: 14, fontFamily: 'Rubik', color: Color(0xFF0a2332),)),
+          ],
+        ),
       ),
     );
   }
-}
 
-// **Notification Card Widget**
-class NotificationCard extends StatelessWidget {
-  final String title;
-  final String description;
-  final String date;
-  final String imageUrl;
-  final BoxConstraints constraints;
 
-  NotificationCard({
-    required this.title,
-    required this.description,
-    required this.date,
-    required this.imageUrl,
-    required this.constraints,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    double cardWidth = constraints.maxWidth > 500 ? 500 : constraints.maxWidth;
-
-    return Container(
-      width: cardWidth,
-      margin: EdgeInsets.only(bottom: 16),
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 3)),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Notification Image
-
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                    fontFamily: 'Tajawal',
-                    color: Colors.black,
-                  ),
-                  textAlign: TextAlign.right,
-                ),
-                SizedBox(height: 4),
-                Text(
-                  description,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'Tajawal',
-                    color: Colors.grey.shade600,
-                  ),
-
-                ),
-                SizedBox(height: 8),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '📅 $date',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Tajawal',
-                      color: Colors.grey.shade900,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(width: 12),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.asset(
-              imageUrl,
-              width: 120,
-              height: 100,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ],
-      ),
-    );
   }
-}
+

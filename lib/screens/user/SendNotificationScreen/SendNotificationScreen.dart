@@ -10,25 +10,32 @@ class SendNotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading:  IconButton(
+          color: Colors.black,
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Get.back(),
+        ),
         title: Text('إرسال إشعار',
             style: TextStyle(
-                fontFamily: 'Tajawal',
+                fontFamily: 'Rubik',
                 fontSize: 22,
-                fontWeight: FontWeight.w900)),
+                fontWeight: FontWeight.w500)),
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            _buildTextField(),
-            SizedBox(height: 20),
-            _buildSendButton(),
-          ],
+      body: Container(decoration: BoxDecoration(color: Colors.white),
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              _buildTextField(),
+              SizedBox(height: 20),
+              _buildSendButton(),
+            ],
+          ),
         ),
       ),
     );
@@ -41,7 +48,7 @@ class SendNotificationScreen extends StatelessWidget {
       decoration: InputDecoration(
         hintText: 'أدخل نص...',
         hintStyle:
-            TextStyle(fontFamily: 'Tajawal', fontSize: 16, color: Colors.grey),
+            TextStyle(fontFamily: 'Rubik', fontSize: 16, color: Colors.grey),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
       ),
     );
@@ -51,13 +58,13 @@ class SendNotificationScreen extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {},
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFF1a2833),
+        backgroundColor: Color(0xFF0a2332),
         minimumSize: Size(double.infinity, 50),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       child: Text('إرسال',
           style: TextStyle(
-              fontSize: 20, color: Colors.white, fontFamily: 'Tajawal')),
+              fontSize: 20, color: Colors.white, fontFamily: 'Rubik')),
     );
   }
 }

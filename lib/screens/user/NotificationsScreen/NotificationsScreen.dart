@@ -38,7 +38,7 @@ class NotificationsScreen extends StatelessWidget {
                   description:
                       'تذكير: فعاليتك للحوار الثقافي قادمة، تابع التحديثات وآخر الإشعارات المتعلقة بالفعالية',
                   date: '2024-3-13 | 6:00 مساءً',
-                  imageUrl: 'assets/image/logo.png',
+                  imageUrl: 'assets/image/img.jpg',
                   constraints: constraints,
                 ),
                 NotificationCard(
@@ -46,7 +46,7 @@ class NotificationsScreen extends StatelessWidget {
                   description:
                       'تنبيه: تم تعديل موعد فعالية "بناء الجسور". يرجى متابعة التحديثات لمعرفة التفاصيل الجديدة',
                   date: '2924-5-20 | 4:30 مساءً',
-                  imageUrl: 'assets/image/logo.png',
+                  imageUrl: 'assets/image/img.jpg',
                   constraints: constraints,
                 ),
               ],
@@ -66,7 +66,7 @@ class NotificationCard extends StatelessWidget {
   final String imageUrl;
   final BoxConstraints constraints;
 
-  NotificationCard({
+  const NotificationCard({
     required this.title,
     required this.description,
     required this.date,
@@ -88,41 +88,64 @@ class NotificationCard extends StatelessWidget {
         border: Border.all(color: Colors.grey[300]!),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.asset(
-              imageUrl,
-              width: double.infinity,
-              height: 120,
-              fit: BoxFit.cover,
-            ),
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 10),
+                    Text(
+                      title,
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Tajawal'),
+                      textAlign: TextAlign.right,
+                    ),
+                    SizedBox(height: 5),
+                    SizedBox(
+                      width: 200,
+                      child: Text(
+                        description,
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Tajawal',
+                            color: Colors.black87),
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    imageUrl,
+                    width: 140,
+                    height: 120,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ],
           ),
-          SizedBox(height: 10),
+          SizedBox(
+            height: 20,
+          ),
           Text(
-            title,
+            'التاريخ: $date',
             style: TextStyle(
                 fontSize: 16,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Tajawal'),
-            textAlign: TextAlign.right,
-          ),
-          SizedBox(height: 5),
-          Text(
-            description,
-            style: TextStyle(
-                fontSize: 14, fontFamily: 'Tajawal', color: Colors.black87),
-            textAlign: TextAlign.right,
-          ),
-          SizedBox(height: 10),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'التاريخ: $date',
-              style: TextStyle(
-                  fontSize: 14, fontFamily: 'Tajawal', color: Colors.grey[600]),
-            ),
+                fontWeight: FontWeight.w800,
+                color: Colors.grey[600]),
           ),
         ],
       ),

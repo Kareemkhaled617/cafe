@@ -20,9 +20,8 @@ class MyBookingsScreen extends StatelessWidget {
           title: Text(
             'حجوزاتي',
             style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Tajawal',
+              fontSize: 22,
+              fontWeight: FontWeight.w900,
             ),
           ),
         ),
@@ -112,7 +111,7 @@ class BookingItem extends StatelessWidget {
   final String imageUrl;
   final BoxConstraints constraints;
 
-  const BookingItem({
+  const BookingItem({super.key,
     required this.title,
     required this.date,
     required this.imageUrl,
@@ -128,11 +127,10 @@ class BookingItem extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 10),
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.amber[50],
-        borderRadius: BorderRadius.circular(12),
+        color: Color(0xFFf9f8ef),
+        borderRadius: BorderRadius.circular(14),
       ),
       child: Row(
-
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8),

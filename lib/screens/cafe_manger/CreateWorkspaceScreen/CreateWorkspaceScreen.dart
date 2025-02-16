@@ -10,7 +10,7 @@ class CreateWorkspaceScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('إنشاء مساحة عمل',
             style: TextStyle(
-                fontFamily: 'Rubik',
+                fontFamily: 'Tajawal',
                 fontSize: 22,
                 fontWeight: FontWeight.w900)),
         backgroundColor: Colors.white,

@@ -23,7 +23,7 @@ class PostsScreen extends StatelessWidget {
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w900,
-              fontFamily: 'Tajawal',
+              fontFamily: 'Rubik',
             ),
           ),
         ),
@@ -114,13 +114,13 @@ class PostItem extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Tajawal'),
+                        fontFamily: 'Rubik'),
                   ),
                   Text(
                     time,
                     style: TextStyle(
                         fontSize: 14,
-                        fontFamily: 'Tajawal',
+                        fontFamily: 'Rubik',
                         color: Colors.grey[600]),
                   ),
                 ],
@@ -135,7 +135,7 @@ class PostItem extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: Text(
               description,
-              style: TextStyle(fontSize: 16, fontFamily: 'Tajawal'),
+              style: TextStyle(fontSize: 16, fontFamily: 'Rubik'),
               textAlign: TextAlign.right,
             ),
           ),

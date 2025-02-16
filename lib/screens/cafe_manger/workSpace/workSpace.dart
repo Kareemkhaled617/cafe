@@ -22,7 +22,7 @@ class WorkSpace extends StatelessWidget {
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w900,
-              fontFamily: 'Tajawal',
+              fontFamily: 'Rubik',
             ),
           ),
         ),

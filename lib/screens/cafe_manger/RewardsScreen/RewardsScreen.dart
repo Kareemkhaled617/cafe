@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../cafe_manger/AddRewardScreen/AddRewardScreen.dart';
+import '../../cafe_manger/Edit Reward Screen/Edit Reward Screen.dart';
+import '../../cafe_manger/QRAttendanceScreen/QRAttendanceScreen.dart';
+
 class RewardsScreen extends StatelessWidget {
   final List<Map<String, String>> rewards = [
     {'name': 'كوكيز', 'points': '70 نقطة', 'image': 'assets/image/logo.png'},
@@ -23,10 +27,10 @@ class RewardsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('المكافآت',
-            style: TextStyle(color: Color(0xFF030303),
-                fontFamily: 'Rubik',
+            style: TextStyle(
+                fontFamily: 'Tajawal',
                 fontSize: 20,
-                fontWeight: FontWeight.w700)),
+                fontWeight: FontWeight.bold)),
         leading: Image.asset(
           'assets/image/logo.png',
           width: 100,
@@ -37,15 +41,17 @@ class RewardsScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(AddRewardScreen());
+              },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF0a2332),
+                backgroundColor: Color(0xFF1a2833),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24)),
+                    borderRadius: BorderRadius.circular(12)),
               ),
               child: Text('أضف مكافأة',
                   style: TextStyle(
-                      fontSize: 14, fontFamily: 'Rubik', color: Colors.white)),
+                      fontSize: 16, fontFamily: 'Tajawal', color: Colors.white)),
             ),
           )
         ],
@@ -71,14 +77,16 @@ class RewardsScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _buildActionButton(
-            'مسح المكافآت', Icons.qr_code_scanner, Color(0xFF0a2332)),
+            'مسح المكافآت', Icons.qr_code_scanner, Color(0xFF1a2833)),
       ],
     );
   }
 
   Widget _buildActionButton(String title, IconData icon, Color color) {
     return ElevatedButton.icon(
-      onPressed: () {},
+      onPressed: () {
+        Get.to(QRAttendanceScreen());
+      },
       label: Icon(
         icon,
         size: 18,
@@ -86,10 +94,10 @@ class RewardsScreen extends StatelessWidget {
       ),
       icon: Text(title,
           style: TextStyle(
-              fontSize: 14, fontFamily: 'Rubik', color: Colors.white)),
+              fontSize: 16, fontFamily: 'Tajawal', color: Colors.white)),
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
   }
@@ -124,7 +132,9 @@ class RewardsScreen extends StatelessWidget {
             style: TextStyle(
                 fontSize: 14, fontFamily: 'Tajawal', color: Colors.orange)),
         trailing: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(EditRewardScreen());
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.grey.shade400,
             shape:

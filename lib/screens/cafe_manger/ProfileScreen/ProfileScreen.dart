@@ -1,10 +1,14 @@
+import 'package:cafe/screens/SignInScreen/SignInScreen.dart';
+import 'package:cafe/screens/cafe_manger/RewardsScreen/RewardsScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../user/EventFeedbackScreen/EventFeedbackScreen.dart';
 import '../../user/ReviewScreen/ReviewScreen.dart';
 import '../EditProfileScreen/EditProfileScreen.dart';
+import '../EventFeedbackScreen/EventFeedbackScreen.dart';
+import '../EventManagmentScreen/EventManagementScreen.dart';
 import '../UploadPostScreen/UploadPostScreen.dart';
+import '../WorkSpaceManagmentScreen/WorkSpaceManagmentScreen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -14,11 +18,56 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 3;
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Get.to(RewardsScreen());
+        break;
+      case 1:
+        Get.to(EventManagementScreen());
+        break;
+      case 2:
+        Get.to(WorkspaceManagementScreen());
+      case 3:
+        Get.to(ProfileScreen());
+        break;
+    }
+  }
+
+  BottomNavigationBarItem _buildNavItem(
+      IconData icon, String label, int index) {
+    return BottomNavigationBarItem(
+      icon: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color:
+              _selectedIndex == index ? Color(0xFF0a2332) : Colors.transparent,
+        ),
+        child: Icon(icon,
+            color: _selectedIndex == index ? Colors.white : Color(0xFF0a2332)),
+      ),
+      label: label,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.white,
+        onTap: _onItemTapped,
+        items: [
+          _buildNavItem(Icons.card_giftcard_rounded, '', 0),
+          _buildNavItem(Icons.grid_on_rounded, '', 1),
+          _buildNavItem(Icons.calendar_month, "", 2),
+          _buildNavItem(Icons.person, "", 3),
+        ],
+      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -39,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.logout),
-            onPressed: () => Get.back(),
+            onPressed: () => Get.to(SignInScreen()),
           ),
         ],
       ),
@@ -81,7 +130,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _buildButton(
                 'تعديل الملف الشخصي', () => Get.to(EditProfileScreen())),
             _buildButton('رفع منشور', () => Get.to(UploadPostScreen())),
-            _buildButton('عرض آراء الحضور', () => Get.to(EventFeedbackScreen())),
+            _buildButton(
+                'عرض آراء الحضور', () => Get.to(EventFeedbackScreen())),
             SizedBox(height: 30),
             Align(
               alignment: Alignment.centerRight,
@@ -145,7 +195,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       shape: RoundedRectangleBorder(),
       elevation: 4,
       child: Container(
-        width: 100,
+        width: 115,
         height: 140,
         decoration: BoxDecoration(
           color: Colors.white,

@@ -2,30 +2,121 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-class QRAttendanceScreen extends StatelessWidget {
+import '../EventManagmentScreen/EventManagementScreen.dart';
+import '../ProfileScreen/ProfileScreen.dart';
+import '../RewardsScreen/RewardsScreen.dart';
+import '../WorkSpaceManagmentScreen/WorkSpaceManagmentScreen.dart';
+
+class QRAttendanceScreen extends StatefulWidget {
   const QRAttendanceScreen({super.key});
 
   @override
+  State<QRAttendanceScreen> createState() => _QRAttendanceScreenState();
+}
+
+class _QRAttendanceScreenState extends State<QRAttendanceScreen> {
+  int _selectedIndex = 1;
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Get.to(RewardsScreen());
+        break;
+      case 1:
+        Get.to(EventManagementScreen());
+        break;
+      case 2:
+        Get.to(WorkspaceManagementScreen());
+      case 3:
+        Get.to(ProfileScreen());
+        break;
+    }
+  }
+  BottomNavigationBarItem _buildNavItem(IconData icon, String label, int index) {
+    return BottomNavigationBarItem(
+      icon: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: _selectedIndex == index ? Color(0xFF0a2332) : Colors.transparent,
+
+        ),
+        child: Icon(icon, color: _selectedIndex == index ? Colors.white : Color(0xFF0a2332)),
+      ),
+      label: label,
+    );
+  }
+
+  void showConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.check_circle,
+                color: Colors.green,
+                size: 60,
+              ),
+              SizedBox(height: 10),
+              Text(
+                "تم تأكيد الحضور",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return Scaffold( bottomNavigationBar: BottomNavigationBar(
+      currentIndex: _selectedIndex,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.grey,
+      backgroundColor: Colors.white,
+      onTap: _onItemTapped,
+      items: [
+        _buildNavItem(Icons.card_giftcard_rounded, '',0),
+        _buildNavItem(Icons.grid_on_rounded,'', 1),
+        _buildNavItem(Icons.calendar_month, "", 2),
+        _buildNavItem(Icons.person, "", 3),
+      ],
+    ),
+      appBar: AppBar(leading:  IconButton(
+        icon: Icon(Icons.arrow_back_ios),
+        onPressed: () => Get.back(),
+      ),
         title: Text('مسح الحضور',
             style: TextStyle(
-                fontFamily: 'Tajawal',
+                fontFamily: 'Rubik',
                 fontSize: 22,
-                fontWeight: FontWeight.w900)),
+                fontWeight: FontWeight.w500)),
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          children: [
-            _buildQRScanner(),
-            SizedBox(height: 20),
-            _buildConfirmationCard(),
-          ],
+      body: Container(
+        decoration: BoxDecoration(color: Colors.white),
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            children: [
+              _buildQRScanner(),
+              SizedBox(height: 20),
+              _buildConfirmationCard(),
+            ],
+          ),
         ),
       ),
     );
@@ -44,7 +135,7 @@ class QRAttendanceScreen extends StatelessWidget {
         children: [
           Text('وجه الكاميرا نحو رمز QR لمسحه',
               style: TextStyle(
-                  fontFamily: 'Tajawal',
+                  fontFamily: 'Rubik',
                   fontWeight: FontWeight.w800,
                   fontSize: 16)),
           SizedBox(height: 10),
@@ -64,14 +155,14 @@ class QRAttendanceScreen extends StatelessWidget {
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF1a2833),
+              backgroundColor: Color(0xFF0a2332),
               minimumSize: Size(150, 40),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular(24)),
             ),
             child: Text('بدء المسح',
                 style: TextStyle(
-                    fontSize: 18, color: Colors.white, fontFamily: 'Tajawal')),
+                    fontSize: 18, color: Colors.white, fontFamily: 'Rubik')),
           ),
         ],
       ),
@@ -91,43 +182,45 @@ class QRAttendanceScreen extends StatelessWidget {
         children: [
           Text('تأكيد الحضور',
               style: TextStyle(
-                  fontFamily: 'Tajawal',
+                  fontFamily: 'Rubik',
                   fontSize: 20,
                   fontWeight: FontWeight.w900)),
           SizedBox(height: 10),
           Text('الاسم: نورا أحمد',
-              style: TextStyle(fontFamily: 'Tajawal', fontSize: 18)),
+              style: TextStyle(fontFamily: 'Rubik', fontSize: 18)),
           SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  showConfirmationDialog(context);
+                },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF1a2833),
+                  backgroundColor: Color(0xFF0a2332),
                   minimumSize: Size(100, 40),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
+                      borderRadius: BorderRadius.circular(24)),
                 ),
                 child: Text('تأكيد',
                     style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,
-                        fontFamily: 'Tajawal')),
+                        fontFamily: 'Rubik')),
               ),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFe8dfc2),
+                  backgroundColor: Color(0xFFede1c3),
                   minimumSize: Size(100, 40),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
+                      borderRadius: BorderRadius.circular(24)),
                 ),
                 child: Text('إلغاء',
                     style: TextStyle(
                         fontSize: 18,
                         color: Colors.black,
-                        fontFamily: 'Tajawal')),
+                        fontFamily: 'Rubik')),
               ),
             ],
           ),

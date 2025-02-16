@@ -1,3 +1,5 @@
+import 'package:cafe/screens/user/WorkspacesScreen/WorkspacesScreen.dart';
+import 'package:cafe/screens/user/workSpace/workSpace.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -79,57 +81,65 @@ class EventItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 16),
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Color(0xFFffffff),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.asset(
-              imageUrl,
-              height: 100,
-              width: 120,
-              fit: BoxFit.cover,
+    return InkWell(
+      onTap: (){
+        Get.to(WorkspacesScreen());
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: 16),
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Color(0xFFffffff),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                imageUrl,
+                height: 100,
+                width: 120,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w900,
-                    fontFamily: 'Tajawal',
-                  ),
-                  textAlign: TextAlign.right,
-                ),
-                SizedBox(height: 4),
-                SizedBox(
-                  width: 200,
-                  child: Text(
-                    description,
-                    maxLines: 4,
+            SizedBox(
+              width: 20,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    title,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
                       fontFamily: 'Tajawal',
-                      fontWeight: FontWeight.w700,
-                      color: Colors.grey.shade600,
                     ),
                     textAlign: TextAlign.right,
                   ),
-                ),
-              ],
+                  SizedBox(height: 4),
+                  SizedBox(
+                    width: 200,
+                    child: Text(
+                      description,
+                      maxLines: 4,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Tajawal',
+                        fontWeight: FontWeight.w700,
+                        color: Colors.grey.shade600,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

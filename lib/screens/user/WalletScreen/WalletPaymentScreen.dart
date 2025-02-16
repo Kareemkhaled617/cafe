@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({super.key});
+class WalletPaymentScreen extends StatefulWidget {
+  const WalletPaymentScreen({super.key});
 
   @override
-  State<PaymentScreen> createState() => _PaymentScreenState();
+  State<WalletPaymentScreen> createState() => _WalletPaymentScreenState();
 }
 
-class _PaymentScreenState extends State<PaymentScreen> {
+class _WalletPaymentScreenState extends State<WalletPaymentScreen> {
   final TextEditingController cardNumberController = TextEditingController();
 
   final TextEditingController cardHolderController = TextEditingController();
@@ -16,6 +16,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   final TextEditingController expiryDateController = TextEditingController();
 
   final TextEditingController cvvController = TextEditingController();
+  final TextEditingController total = TextEditingController();
 
   int ticketCount = 1;
 
@@ -45,26 +46,27 @@ class _PaymentScreenState extends State<PaymentScreen> {
           ),
         ),
       ),
-      body:
-
-      LayoutBuilder(
-
+      body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(
-
             padding: EdgeInsets.all(16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Ticket Quantity and Price
-                TicketQuantitySelector(
-                  ticketCount: ticketCount,
-                  ticketPrice: ticketPrice,
-                  onChanged: (value) {
-                    setState(() {
-                      ticketCount = value;
-                    });
-                  },
+                TextField(
+                  controller: total,
+                  textAlign: TextAlign.right,
+                  decoration: InputDecoration(
+                    hintText: 'المبلغ',
+                    hintStyle: TextStyle(
+                        fontFamily: 'Tajawal', color: Colors.grey[500]),
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                  ),
                 ),
                 SizedBox(height: 16),
                 PaymentForm(),
@@ -221,7 +223,6 @@ class PaymentTextField extends StatelessWidget {
   }
 }
 
-// **Ticket Quantity Selector**
 class TicketQuantitySelector extends StatelessWidget {
   final int ticketCount;
   final double ticketPrice;

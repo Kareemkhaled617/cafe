@@ -24,10 +24,10 @@ class SplashScreen extends StatelessWidget {
             Text(
               'اكتشف فعاليات الشريك الأدبي',
               style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'Tajawal',
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w700),
+                  fontSize: 18,
+                  fontFamily: 'Rubik',
+                  color:  Color(0xFF0a2332),
+                  fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 30),
             // Navigation Button
@@ -36,7 +36,7 @@ class SplashScreen extends StatelessWidget {
                 Get.to(SignInScreen());
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
+                backgroundColor:  Color(0xFF0a2332),
                 shape: CircleBorder(),
                 padding: EdgeInsets.all(16),
               ),

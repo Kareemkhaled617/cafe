@@ -1,18 +1,11 @@
-import 'package:cafe/screens/cafe_manger/ProfileScreen/ProfileScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'ChangePasswordDialog.dart';
 
-class EditProfileScreen extends StatefulWidget {
+class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
 
-  @override
-  State<EditProfileScreen> createState() => _EditProfileScreenState();
-}
-
-class _EditProfileScreenState extends State<EditProfileScreen> {
-  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,18 +25,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
         child: SingleChildScrollView(
-
           child: Column(
             children: [
-              Text(
-                'الصورة',
-                style: TextStyle(
-                    fontSize: 16,
-
-                    fontFamily: 'Rubik',
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
-              ),
               Container(
                 width: double.infinity,
                 height: 120,
@@ -55,7 +38,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/image/profile_img.png',
+                      'assets/image/logo.png',
                       width: 100,
                       height: 100,
                       fit: BoxFit.cover,
@@ -64,14 +47,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
               ),
               SizedBox(height: 16),
-              buildTextField('مساحة رو | ROW Space', 'الاسم',),
+              buildTextField('الاسم', 'مساحة رو'),
               buildTextField('الوصف',
-                  'مقهى ومحمصة رو | تعزز الثقافة والأدب عبر فعاليات إبداعية ضمن مبادرة #الشريك_الأدبي'),
-              buildTextField('الإيميل',"RowCafe@gmail.com" ),
+                  'مقهى ومخصصة رو | تعزز الثقافة والأدب عبر فعاليات إبداعية ضمن مبادرة #الشريك_الأدبي'),
+              buildTextField('الإيميل', 'RowCafe@gmail.com'),
               buildTextField('رقم الجوال', '96654378954'),
               SizedBox(height: 10),
               GestureDetector(
-
                 onTap: () {
                   showDialog(
                     context: context,
@@ -80,18 +62,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 },
                 child: Row(
                   children: [
-
+                    Icon(Icons.edit, size: 20, color: Colors.grey.shade700),
                     SizedBox(width: 5),
                     Text(
                       'تغيير كلمة المرور',
                       style: TextStyle(
                           fontSize: 16,
-                          decoration: TextDecoration.underline,
-                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.bold,
                           color: Colors.grey.shade700),
                     ),
-                    Icon(Icons.edit, size: 20, color: Colors.grey.shade700),
                   ],
                 ),
               ),
@@ -102,16 +81,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   minimumSize: Size(double.infinity, 50),
                 ),
                 onPressed: () {
-                 Get.to(ProfileScreen());
+                  // Handle save changes
                 },
                 child: Text(
-
                   'حفظ التغييرات',
                   style: TextStyle(
                       fontSize: 18,
-
-                      color: Colors.black,    fontFamily: 'Rubik',
-                      fontWeight: FontWeight.w500),
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(height: 20),
@@ -130,7 +107,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         children: [
           Text(
             label,
-            style: TextStyle(fontSize: 18,      fontFamily: 'Rubik',fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           SizedBox(
             height: 2,
@@ -140,7 +117,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             decoration: InputDecoration(
               labelText: label,
               hintText: hint,
-
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(color: Colors.grey.withOpacity(.3)),
@@ -149,7 +125,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(color: Colors.grey.withOpacity(.3)),
               ),
-              filled: false,
+              filled: true,
               fillColor: Colors.white,
             ),
           ),
