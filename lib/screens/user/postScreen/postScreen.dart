@@ -40,7 +40,7 @@ class PostsScreen extends StatelessWidget {
                   tag: 'ROW',
                   description:
                       'سعدنا بمناقشة كتاب "عبق الحروف" الذي يفتح أمامنا آفاقا جديدة في عالم الأدب والفكر. تطرقنا خلال النقاش إلى جماليات اللغة وتأثيرها في التعبير عن المشاعر والأفكار. كان من الرائع تبادل الآراء حول كيفية استخدام الحرف لنقل التجارب الإنسانية.',
-                  imageUrl: 'assets/image/img.jpg',
+                  imageUrl: 'assets/image/userhome1.png',
                   constraints: constraints,
                 ),
                 PostItem(
@@ -49,7 +49,7 @@ class PostsScreen extends StatelessWidget {
                   tag: 'ROW',
                   description:
                       'أمسية شعرية رائعة احتضنتها الأجواء الساحرة، حيث تجمع عشاق الكلمة والجمال في مكان واحد. تميزت الفعالية بحضور مجموعة من الشعراء المبدعين الذين ألقوا قصائدهم بإحساس عميق، مما أسهم في خلق تجربة فنية فريدة.',
-                  imageUrl: 'assets/image/img.jpg',
+                  imageUrl: 'assets/image/userhome1.png',
                   constraints: constraints,
                 ),
               ],
@@ -102,7 +102,7 @@ class PostItem extends StatelessWidget {
               if (tag.isNotEmpty)
                 CircleAvatar(
                   radius: 30,
-                  backgroundImage: AssetImage('assets/image/img.jpg'),
+                  backgroundImage: AssetImage('assets/image/Image (5).png'),
                 ),
               SizedBox(
                 width: 20,

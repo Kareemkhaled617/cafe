@@ -3,12 +3,58 @@ import 'package:cafe/screens/user/workSpace/workSpace.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class UpcomingEventsScreen extends StatelessWidget {
-  const UpcomingEventsScreen({super.key});
+import '../user_layout/user_layout.dart';
 
+class UpcomingEventsScreen extends StatelessWidget {
+   UpcomingEventsScreen({super.key});
+  final int _selectedIndex = 1; // العنصر المحدد حاليًا
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Get.off(UserLayout(
+          selectPage: 0,
+        ));
+        break;
+      case 1:
+        Get.off(UserLayout(
+          selectPage: 1,
+        ));
+        break;
+      case 2:
+        Get.off(UserLayout(
+          selectPage: 2,
+        ));
+
+        break;
+      case 3:
+        Get.off(UserLayout(
+          selectPage: 3,
+        ));
+
+        break;
+    }
+  }
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.event), label: ''),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.airplane_ticket_sharp), label: ''),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {
+          _onItemTapped(index);
+        },
+      ),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: AppBar(
@@ -39,21 +85,21 @@ class UpcomingEventsScreen extends StatelessWidget {
                   title: 'بناء الجسور',
                   description:
                       'انضم إلينا في حدث "بناء الجسور" الذي يهدف إلى تعزيز التفاهم، التواصل، والتعاون بين الأفراد والمجتمعات.',
-                  imageUrl: 'assets/image/img.jpg',
+                  imageUrl: 'assets/image/Image (1).png',
                   constraints: constraints,
                 ),
                 EventItem(
                   title: 'حوارات ثقافية',
                   description:
                       'انضم إلينا في إحدى الحوارات حول الكتب الثقافية التي تقام في مقهى عرب.',
-                  imageUrl: 'assets/image/img.jpg',
+                  imageUrl: 'assets/image/Image (2).png',
                   constraints: constraints,
                 ),
                 EventItem(
                   title: 'الأبل في أدب الصحراء',
                   description:
                       'انضم إلينا في إحدى الحوارات التي تقام في مقهى عرب.',
-                  imageUrl: 'assets/image/img.jpg',
+                  imageUrl: 'assets/image/Image (3).png',
                   constraints: constraints,
                 ),
               ],

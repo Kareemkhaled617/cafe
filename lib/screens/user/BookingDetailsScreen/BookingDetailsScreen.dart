@@ -1,12 +1,60 @@
+import 'package:cafe/screens/user/BookingConfirmationScreen/BookingConfirmationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../user_layout/user_layout.dart';
+
 class BookingDetailsScreen extends StatelessWidget {
-  const BookingDetailsScreen({super.key});
+  BookingDetailsScreen({super.key});
+
+  int _selectedIndex = 1; // العنصر المحدد حاليًا
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Get.off(UserLayout(
+          selectPage: 0,
+        ));
+        break;
+      case 1:
+        Get.off(UserLayout(
+          selectPage: 1,
+        ));
+        break;
+      case 2:
+        Get.off(UserLayout(
+          selectPage: 2,
+        ));
+
+        break;
+      case 3:
+        Get.off(UserLayout(
+          selectPage: 3,
+        ));
+
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.event), label: ''),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.airplane_ticket_sharp), label: ''),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {
+          _onItemTapped(index);
+        },
+      ),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: AppBar(
@@ -112,94 +160,95 @@ class BookingDetailsScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 12),
                 Container(
-                  padding: EdgeInsets.all(16),
+                  padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.amber[50],
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(Icons.calendar_today,
-                              size: 18, color: Colors.black),
-                          SizedBox(width: 6),
-                          Text(
-                            'التاريخ :',
-                            style:
-                                TextStyle(fontSize: 16, fontFamily: 'Tajawal'),
+                          SizedBox(height: 8),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 6),
+                              Text(
+                                'التاريخ :',
+                                style: TextStyle(
+                                    fontSize: 16, fontFamily: 'Tajawal'),
+                              ),
+                              SizedBox(width: 6),
+                              Text(
+                                '15 - 5 - 2024',
+                                style: TextStyle(
+                                    fontSize: 14, fontFamily: 'Tajawal'),
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 6),
-                          Text(
-                            '15 - 5 - 2024',
-                            style:
-                                TextStyle(fontSize: 14, fontFamily: 'Tajawal'),
+                          SizedBox(height: 6),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 6),
+                              Text(
+                                'الوقت :',
+                                style: TextStyle(
+                                    fontSize: 14, fontFamily: 'Tajawal'),
+                              ),
+                              SizedBox(width: 6),
+                              Text(
+                                '4:30 مساءً',
+                                style: TextStyle(
+                                    fontSize: 14, fontFamily: 'Tajawal'),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 6),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 6),
+                              Text(
+                                'المكان :',
+                                style: TextStyle(
+                                    fontSize: 16, fontFamily: 'Tajawal'),
+                              ),
+                              SizedBox(width: 6),
+                              Text(
+                                'مقهى حبر',
+                                style: TextStyle(
+                                    fontSize: 14, fontFamily: 'Tajawal'),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 6),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 6),
+                              Text(
+                                'الدخول :',
+                                style: TextStyle(
+                                    fontSize: 16, fontFamily: 'Tajawal'),
+                              ),
+                              SizedBox(width: 6),
+                              Text(
+                                'مجاني',
+                                style: TextStyle(
+                                    fontSize: 14, fontFamily: 'Tajawal'),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      SizedBox(height: 6),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.access_time,
-                              size: 18, color: Colors.black),
-                          SizedBox(width: 6),
-                          Text(
-                            'الوقت :',
-                            style:
-                                TextStyle(fontSize: 14, fontFamily: 'Tajawal'),
-                          ),
-                          SizedBox(width: 6),
-                          Text(
-                            '4:30 مساءً',
-                            style:
-                                TextStyle(fontSize: 14, fontFamily: 'Tajawal'),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 6),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.location_on,
-                              size: 18, color: Colors.black),
-                          SizedBox(width: 6),
-                          Text(
-                            'المكان :',
-                            style:
-                                TextStyle(fontSize: 16, fontFamily: 'Tajawal'),
-                          ),
-                          SizedBox(width: 6),
-                          Text(
-                            'مقهى حبر',
-                            style:
-                                TextStyle(fontSize: 14, fontFamily: 'Tajawal'),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 6),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.attach_money,
-                              size: 18, color: Colors.black),
-                          SizedBox(width: 6),
-                          Text(
-                            'الدخول :',
-                            style:
-                                TextStyle(fontSize: 16, fontFamily: 'Tajawal'),
-                          ),
-                          SizedBox(width: 6),
-                          Text(
-                            'مجاني',
-                            style:
-                                TextStyle(fontSize: 14, fontFamily: 'Tajawal'),
-                          ),
-                        ],
-                      ),
+                      Icon(
+                        Icons.location_on,
+                        size: 50,
+                      )
                     ],
                   ),
                 ),
@@ -320,11 +369,9 @@ class BookingDetailsScreen extends StatelessWidget {
                   ),
                 ],
               )),
-      confirm: ElevatedButton(
+      cancel: ElevatedButton(
         onPressed: () {
-          Get.back(); // Close Dialog
-          Get.snackbar("تم الحجز", "تم حجز $ticketCount تذكرة بنجاح",
-              backgroundColor: Colors.green, colorText: Colors.white);
+          Get.to(BookingConfirmationScreen());
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Color(0xFF1a2833),
@@ -336,7 +383,7 @@ class BookingDetailsScreen extends StatelessWidget {
               fontSize: 16, fontFamily: 'Tajawal', color: Colors.white),
         ),
       ),
-      cancel: OutlinedButton(
+      confirm: OutlinedButton(
         onPressed: () {
           Get.back(); // Close Dialog
         },

@@ -1,12 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../user_layout/user_layout.dart';
+
 class WorkSpace extends StatelessWidget {
-  const WorkSpace({super.key});
+  WorkSpace({super.key});
+
+  int _selectedIndex = 1; // العنصر المحدد حاليًا
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Get.off(UserLayout(
+          selectPage: 0,
+        ));
+        break;
+      case 1:
+        Get.off(UserLayout(
+          selectPage: 1,
+        ));
+        break;
+      case 2:
+        Get.off(UserLayout(
+          selectPage: 2,
+        ));
+
+        break;
+      case 3:
+        Get.off(UserLayout(
+          selectPage: 3,
+        ));
+
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.event), label: ''),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.airplane_ticket_sharp), label: ''),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {
+          _onItemTapped(index);
+        },
+      ),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: AppBar(
@@ -35,19 +81,17 @@ class WorkSpace extends StatelessWidget {
               children: [
                 EventItem(
                   title: 'بناء الجسور',
-                  imageUrl: 'assets/image/img.jpg',
+                  imageUrl: 'assets/image/Image (4).png',
                   constraints: constraints,
                 ),
                 EventItem(
                   title: 'حوارات ثقافية',
-
-                  imageUrl: 'assets/image/img.jpg',
+                  imageUrl: 'assets/image/Image (5).png',
                   constraints: constraints,
                 ),
                 EventItem(
                   title: 'الأبل في أدب الصحراء',
-
-                  imageUrl: 'assets/image/img.jpg',
+                  imageUrl: 'assets/image/Image (5).png',
                   constraints: constraints,
                 ),
               ],
@@ -68,7 +112,6 @@ class EventItem extends StatelessWidget {
 
   EventItem({
     required this.title,
-
     required this.imageUrl,
     required this.constraints,
   });
@@ -83,7 +126,6 @@ class EventItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
-
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20),

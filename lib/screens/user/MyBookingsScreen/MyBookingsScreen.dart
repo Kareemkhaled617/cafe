@@ -1,12 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../user_layout/user_layout.dart';
+
 class MyBookingsScreen extends StatelessWidget {
-  const MyBookingsScreen({super.key});
+  MyBookingsScreen({super.key});
+
+  int _selectedIndex = 1; // العنصر المحدد حاليًا
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Get.off(UserLayout(
+          selectPage: 0,
+        ));
+        break;
+      case 1:
+        Get.off(UserLayout(
+          selectPage: 1,
+        ));
+        break;
+      case 2:
+        Get.off(UserLayout(
+          selectPage: 2,
+        ));
+
+        break;
+      case 3:
+        Get.off(UserLayout(
+          selectPage: 3,
+        ));
+
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.event), label: ''),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.airplane_ticket_sharp), label: ''),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {
+          _onItemTapped(index);
+        },
+      ),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: AppBar(
@@ -38,13 +85,13 @@ class MyBookingsScreen extends StatelessWidget {
                 BookingItem(
                   title: 'بناء الجسور',
                   date: 'March 18, 2024',
-                  imageUrl: 'assets/image/logo.png',
+                  imageUrl: 'assets/image/Image (1).png',
                   constraints: constraints,
                 ),
                 BookingItem(
                   title: 'حوارات ثقافية',
                   date: 'May 15, 2024',
-                  imageUrl: 'assets/image/logo.png',
+                  imageUrl: 'assets/image/Image (2).png',
                   constraints: constraints,
                 ),
 
@@ -55,7 +102,7 @@ class MyBookingsScreen extends StatelessWidget {
                 BookingItem(
                   title: 'ملتقى العقول',
                   date: 'March 15, 2024',
-                  imageUrl: 'assets/image/logo.png',
+                  imageUrl: 'assets/image/Image (3).png',
                   constraints: constraints,
                 ),
                 BookingItem(
@@ -69,14 +116,6 @@ class MyBookingsScreen extends StatelessWidget {
           );
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.list), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-        ],
-        selectedItemColor: Colors.black,
-      ),
     );
   }
 }
@@ -85,7 +124,7 @@ class MyBookingsScreen extends StatelessWidget {
 class SectionTitle extends StatelessWidget {
   final String title;
 
-  const SectionTitle({required this.title});
+  const SectionTitle({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +150,8 @@ class BookingItem extends StatelessWidget {
   final String imageUrl;
   final BoxConstraints constraints;
 
-  const BookingItem({super.key,
+  const BookingItem({
+    super.key,
     required this.title,
     required this.date,
     required this.imageUrl,

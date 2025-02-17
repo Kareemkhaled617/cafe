@@ -1,20 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BookingConfirmationScreen extends StatelessWidget {
-  const BookingConfirmationScreen({super.key});
+import '../user_layout/user_layout.dart';
 
+class BookingConfirmationScreen extends StatelessWidget {
+   BookingConfirmationScreen({super.key});
+
+   int _selectedIndex = 1; // العنصر المحدد حاليًا
+
+   void _onItemTapped(int index) {
+     switch (index) {
+       case 0:
+         Get.off(UserLayout(
+           selectPage: 0,
+         ));
+         break;
+       case 1:
+         Get.off(UserLayout(
+           selectPage: 1,
+         ));
+         break;
+       case 2:
+         Get.off(UserLayout(
+           selectPage: 2,
+         ));
+
+         break;
+       case 3:
+         Get.off(UserLayout(
+           selectPage: 3,
+         ));
+
+         break;
+     }
+   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.event), label: ''),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.airplane_ticket_sharp), label: ''),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {
+          _onItemTapped(index);
+        },
+      ),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return Stack(
             children: [
               // Background Image
-              Positioned.fill(
+              Positioned(
                 child: Image.asset(
-                  'assets/image/logo.png', // Replace with actual image path
+                  'assets/image/userhome1.png', // Replace with actual image path
                   fit: BoxFit.cover,
                 ),
               ),

@@ -3,14 +3,35 @@ import 'package:cafe/screens/user/WalletScreen/WalletScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../NotificationsScreen/NotificationsScreen.dart';
 import '../EditUserProfileScreen/EditUserProfileScreen.dart';
+import '../HomeScreen/HomeScreen.dart';
 
-class UserProfileScreen extends StatelessWidget {
+class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({super.key});
 
   @override
+  State<UserProfileScreen> createState() => _UserProfileScreenState();
+}
+
+class _UserProfileScreenState extends State<UserProfileScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: Image.asset(
+          'assets/image/logo1.png',
+          height: 60,
+        ),
+        centerTitle: true,
+        title: Text('أهلا أحمد!',
+            style: TextStyle(
+                fontSize: 20,
+                color: Color(0xFF0a2332),
+                fontFamily: 'Rubik',
+                fontWeight: FontWeight.w700)),
+      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -19,33 +40,16 @@ class UserProfileScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/image/logo.png',
-                      height: 60,
-                    ),
-                    Spacer(
-                      flex: 1,
-                    ),
-                    Text(
-                      'أهلا أحمد!',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Spacer(
-                      flex: 2,
-                    ),
-                  ],
-                ),
                 SizedBox(height: 20),
                 ListTile(
                   title: Text('الملف الشخصي',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  leading: Icon(Icons.person),
+                      style: TextStyle(fontWeight: FontWeight.w900)),
+                  leading: CircleAvatar(
+                      backgroundColor: Color(0xFFf0f6fe),
+                      child: Icon(
+                        Icons.person,
+                        color: Colors.blue,
+                      )),
                   trailing: Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     Get.to(EditUserProfileScreen());
@@ -53,11 +57,18 @@ class UserProfileScreen extends StatelessWidget {
                 ),
                 ListTile(
                   title: Text('المحفظة',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  leading: Icon(Icons.account_balance_wallet),
+                      style: TextStyle(fontWeight: FontWeight.w900)),
+                  leading: CircleAvatar(
+                      backgroundColor: Color(0xFFf0f6fe),
+                      child: Icon(
+                        Icons.account_balance_wallet,
+                        color: Colors.blue,
+                      )),
                   trailing: Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    Get.to(WalletScreen());
+                    Get.to(WalletScreen(
+                      val: true,
+                    ));
                   },
                 ),
                 SizedBox(height: 20),
@@ -85,10 +96,10 @@ class UserProfileScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 40),
                 Text('نقاطك',
                     style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.w900)),
                 SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -108,7 +119,7 @@ class UserProfileScreen extends StatelessWidget {
 
   Widget buildPointsCard(String image, String title, String points) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Get.to(RewardsScreen());
       },
       child: Column(

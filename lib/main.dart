@@ -2,6 +2,7 @@ import 'package:cafe/screens/CafeRegister/cafe_register.dart';
 import 'package:cafe/screens/cafe_manger/CreateEventScreen/CreateEventScreen.dart';
 import 'package:cafe/screens/cafe_manger/Edit%20Reward%20Screen/Edit%20Reward%20Screen.dart';
 import 'package:cafe/screens/cafe_manger/EventManagmentScreen/EventManagementScreen.dart';
+import 'package:cafe/screens/cafe_manger/HomeScreen/HomeScreen.dart';
 import 'package:cafe/screens/cafe_manger/ProfileScreen/ProfileScreen.dart';
 import 'package:cafe/screens/cafe_manger/WorkSpaceManagmentScreen/WorkSpaceManagmentScreen.dart';
 import 'package:cafe/screens/cafe_manger/cafe_manger_layout/cafe_manger_layout.dart';
@@ -42,10 +43,17 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       locale: Locale('ar', 'EG'),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        appBarTheme: AppBarTheme(backgroundColor: Colors.white),
+        scaffoldBackgroundColor: Colors.white,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.white,
+        ),
         useMaterial3: true,
       ),
-      home: UserLayout(),
+      home: UserLayout(
+        selectPage: 0,
+      ),
     );
   }
 }

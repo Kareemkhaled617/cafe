@@ -1,5 +1,6 @@
 import 'package:cafe/screens/user/MyTicketsScreen/MyTicketsScreen.dart';
 import 'package:cafe/screens/user/WalletScreen/WalletScreen.dart';
+import 'package:cafe/screens/user/postScreen/postScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../../dashboard_screen/dashboard_screen.dart';
@@ -9,7 +10,9 @@ import '../NotificationsScreen/NotificationsScreen.dart';
 import '../UserProfileScreen/UserProfileScreen.dart';
 
 class UserLayout extends StatefulWidget {
-  const UserLayout({super.key});
+  const UserLayout({super.key, required this.selectPage});
+
+  final int selectPage;
 
   @override
   State<UserLayout> createState() => _UserLayoutState();
@@ -19,10 +22,16 @@ class _UserLayoutState extends State<UserLayout> {
   List page = [
     UserProfileScreen(),
     NewScreen(),
-    WalletScreen(),
+    PostsScreen(),
     MyTicketsScreen()
   ];
   int selectPage = 0;
+
+  @override
+  void initState() {
+    selectPage = widget.selectPage;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +42,9 @@ class _UserLayoutState extends State<UserLayout> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: page[selectPage],
+      extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),

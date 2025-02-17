@@ -1,12 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../user_layout/user_layout.dart';
+
 class RewardsScreen extends StatelessWidget {
-  const RewardsScreen({super.key});
+  RewardsScreen({super.key});
+
+  int _selectedIndex = 1; // العنصر المحدد حاليًا
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        Get.off(UserLayout(
+          selectPage: 0,
+        ));
+        break;
+      case 1:
+        Get.off(UserLayout(
+          selectPage: 1,
+        ));
+        break;
+      case 2:
+        Get.off(UserLayout(
+          selectPage: 2,
+        ));
+
+        break;
+      case 3:
+        Get.off(UserLayout(
+          selectPage: 3,
+        ));
+
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.event), label: ''),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.airplane_ticket_sharp), label: ''),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {
+          _onItemTapped(index);
+        },
+      ),
       appBar: AppBar(
         title: Text(
           'نقاطك',
